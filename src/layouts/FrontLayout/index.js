@@ -1,11 +1,10 @@
+import classNames from 'classnames/bind';
+import styles from './FrontLayout.module.scss';
+
+const cx = classNames.bind(styles);
+
 function FrontLayout({ children }) {
-	return (
-		<div>
-			<h1>Header</h1>
-			<div className='container'>{children}</div>
-			<h1>Footer</h1>
-		</div>
-	);
+	return <div className={cx('wrapper')}>{children}</div>;
 }
 
 export default FrontLayout;

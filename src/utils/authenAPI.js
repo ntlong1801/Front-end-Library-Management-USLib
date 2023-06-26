@@ -3,6 +3,10 @@ import axios from 'axios';
 export const authenInstance = axios.create({
 	baseURL: process.env.REACT_APP_AUTHEN_API,
 	withCredentials: true,
+	headers: {
+		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*',
+	},
 });
 
 export const get = async (url, config = {}) => {
