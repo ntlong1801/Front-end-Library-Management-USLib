@@ -22,3 +22,10 @@ export const deleteHTTP = async (url, config = {}) => {
 
 	return result.data;
 };
+
+export const patch = async (url, data, config = {}) => {
+	const result = await baseAPI.patch(url, data, config);
+
+	return result.data;
+};
+

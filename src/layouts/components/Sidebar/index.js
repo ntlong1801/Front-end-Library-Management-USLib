@@ -30,7 +30,7 @@ const MENU = [
 	{
 		icon: faUser,
 		title: 'Quản lý độc giả',
-		to: 'reader',
+		to: '/reader',
 	},
 	{
 		icon: faNotesMedical,

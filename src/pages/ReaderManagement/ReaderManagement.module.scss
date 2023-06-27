@@ -1,0 +1,192 @@
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+th,
+td {
+    padding: 10px 20px;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+    color: #007bff;
+}
+
+.wrapper {
+    display: flex;
+
+}
+
+
+.content-container {
+    margin: 0 16px;
+}
+
+.table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.full-width-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-button {
+    width: 5%;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-right: 16px;
+}
+
+.add-reader-button,
+.close-modal {
+    padding: 10px 20px !important;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 0;
+}
+
+.add-reader-button:hover,
+.close-modal:hover {
+    background-color: #0056b3;
+}
+
+form {
+    width: 200px;
+}
+
+.center {
+    text-align: center;
+}
+
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    label {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input,
+    select {
+        width: 100%;
+        border: 1px solid #000;
+        margin-bottom: 16px;
+        padding: 0 8px;
+        height: 28px;
+    }
+
+}
+
+.confirm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.message {
+    margin: 12px 0;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--success-color);
+
+    &.error {
+        color: var(--error-color);
+    }
+}
+
+
+.add-search-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 50px 20px 20px 0;
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+    }
+}
+
+/* CSS để hiển thị logo và ô input */
+
+
+.search-box input[type="text"] {
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    width: 200px;
+}
+
+.search-box button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.search-box button img {
+    height: 20px;
+    width: 20px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
