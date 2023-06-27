@@ -6,6 +6,7 @@ import HomePage from '@/pages/Home';
 import RegisterPage from '@/pages/Register';
 import SearchPage from '@/pages/Search';
 import BookPage from '@/pages/Book';
+import MakingLoanPage from '@/pages/MakingLoan';
 
 export const publicRoutes = [
 	{ path: '/login', element: LoginPage, layout: FrontLayout },
@@ -13,4 +14,5 @@ export const publicRoutes = [
 	{ path: '/search', element: SearchPage, layout: DefaultLayout },
 	{ path: '/book', element: BookPage, layout: DefaultLayout },
 	{ path: '/', element: HomePage, layout: DefaultLayout },
+	{ path: '/makingloan', element: MakingLoanPage, layout: DefaultLayout },
 ];
