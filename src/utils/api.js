@@ -16,3 +16,9 @@ export const post = async (url, data, config = {}) => {
 
 	return result.data;
 };
+
+export const deleteHTTP = async (url, config = {}) => {
+	const result = await baseAPI.delete(url, config);
+
+	return result.data;
+};

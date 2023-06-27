@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100wh;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+}
+
+.content {
+    flex: 1;
+}

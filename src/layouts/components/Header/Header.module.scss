@@ -1,0 +1,62 @@
+.wrapper {
+    display: flex;
+    height: 56px;
+    padding: 16px;
+    margin-top: 8px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.date {
+    height: 36px;
+    line-height: 3.6rem;
+    border-radius: 6px;
+    background-color: var(--white-color);
+    margin-right: 12px;
+    padding: 0 4px;
+}
+
+
+.user {
+    display: flex;
+    background-color: var(--white-color);
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-right: 12px;
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--primary-color);
+        margin-right: 6px;
+    }
+
+    .name {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        margin-bottom: 4px;
+    }
+
+    .role {
+        font-size: 1.2rem;
+        color: var(--black-color);
+    }
+}
+
+.btn-notify {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--white-color);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    svg {
+        color: var(--icon-color);
+        font-size: 1.6rem;
+    }
+}
