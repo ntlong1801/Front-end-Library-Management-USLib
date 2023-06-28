@@ -8,6 +8,7 @@ import SearchPage from '@/pages/Search';
 import BookPage from '@/pages/Book';
 import MakingLoanPage from '@/pages/MakingLoan';
 import ReaderManagement from '@/pages/ReaderManagement';
+import Regulation from '@/pages/Regulation';
 
 export const publicRoutes = [
 	{ path: '/login', element: LoginPage, layout: FrontLayout },
@@ -17,4 +18,5 @@ export const publicRoutes = [
 	{ path: '/', element: HomePage, layout: DefaultLayout },
 	{ path: '/makingloan', element: MakingLoanPage, layout: DefaultLayout },
 	{ path: '/reader', element: ReaderManagement, layout: DefaultLayout },
+	{ path: '/regulation', element: Regulation, layout: DefaultLayout },
 ];

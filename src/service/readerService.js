@@ -1,14 +1,5 @@
 import * as api from '@/utils/api';
 
-export const getAllBook = async (config = {}) => {
-    try {
-        const result = await api.get('/api/book', config);
-        return result.data;
-    } catch (er) {
-        throw new Error('Can not operate login API');
-    }
-};
-
 export const getAllReader = async (config = {}) => {
     try {
         const result = await api.get('/api/reader', config);
@@ -48,6 +39,15 @@ export const getOneReader = async (id, config = {}) => {
 export const updateOneReader = async (id, data, config = {}) => {
     try {
         const result = await api.patch(`/api/reader/${id}`, data, config);
+        return result;
+    } catch (er) {
+        throw new Error('Can not operate login API');
+    }
+};
+
+export const search = async (data, config = {}) => {
+    try {
+        const result = await api.get(`/api/reader/search?fullName=${data}`, config);
         return result;
     } catch (er) {
         throw new Error('Can not operate login API');

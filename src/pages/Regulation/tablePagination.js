@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import styles from './ReaderManagement.module.scss';
+import styles from './Regulation.module.scss';
 // import Modal from 'react-modal';
 import classNames from 'classnames/bind';
-import { deleteReader } from '@/service/readerService';
-import UpdateReaderModal from './updateReaderModal';
+import { deleteRegulation } from '@/service/regulationService';
+import UpdateRegulationModal from './updateRegulationModal';
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +15,7 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
   if (name !== '') {
     totalPages = Math.ceil(searchResults.length / itemsPerPage)
   }
-  
+
 
   // Lấy dữ liệu cho trang hiện tại
   const getDataForCurrentPage = () => {
@@ -40,10 +40,10 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
     // eslint-disable-next-line no-restricted-globals
     const isDelete = confirm(`Bạn chắc chắn muốn xóa ${name}`);
 
-		if (isDelete) {
-			await deleteReader(id);
-			onSignal(id)
-		}
+    if (isDelete) {
+      await deleteRegulation(id);
+      onSignal(id)
+    }
   };
 
 
@@ -57,12 +57,9 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
       <table className={cx('full-width-table')}>
         <thead>
           <tr>
-            <th>Họ và tên</th>
-            <th>Ngày sinh</th>
-            <th>Địa chỉ</th>
-            <th>Email</th>
-            <th>Ngày lập thẻ</th>
-            <th>Loại độc giả</th>
+            <th>Tên</th>
+            <th>Giá trị mặc định</th>
+            <th>Giá trị hiện tại</th>
             <th className={cx('table-button')}></th>
             <th className={cx('table-button')}></th>
           </tr>
@@ -70,16 +67,13 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
         <tbody>
           {getDataForCurrentPage().map((item, index) => (
             <tr key={item.id} style={{ backgroundColor: index % 2 === 0 ? '#f0f0f0' : '#e0e0e0' }}>
-              <td>{item.fullName}</td>
-              <td>{item.birthday}</td>
-              <td>{item.address}</td>
-              <td>{item.email}</td>
-              <td>{item.dateCreated}</td>
-              <td>{item.typeOfReader}</td>
+              <td>{item.name}</td>
+              <td>{item.default_value}</td>
+              <td>{item.current_value}</td>
               <td className={cx('table-button')}><div>
-                <UpdateReaderModal onSignal={handleOnSignalFromUpdate} id={item.id} />
+                <UpdateRegulationModal onSignal={handleOnSignalFromUpdate} data={item} />
               </div></td>
-              <td className={cx('table-button')}> <button onClick={() => handleDel(item.fullName, item.id)}>Xóa</button></td>
+              <td className={cx('table-button')}> <button onClick={() => handleDel(item.name, item.id)}>Xóa</button></td>
             </tr>
           ))}
 

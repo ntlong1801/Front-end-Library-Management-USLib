@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import styles from './ReaderManagement.module.scss';
 import classNames from 'classnames/bind';
-import { addReader } from '@/service/mainService'
+import { addReader } from '@/service/readerService'
 
 const cx = classNames.bind(styles);
 
