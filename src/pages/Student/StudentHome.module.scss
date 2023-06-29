@@ -1,27 +1,12 @@
-.mb-8 {
-    margin-bottom: 8px;
-}
-
 th,
 td {
     padding: 10px 20px;
-    text-align: center;
 }
 
-button {
-    cursor: pointer;
-    color: #007bff;
+.m-16 {
+    margin: 16px;
 }
 
-.wrapper {
-    display: flex;
-
-}
-
-
-.content-container {
-    margin: 0 16px;
-}
 
 .table-container {
     width: 100%;
@@ -34,10 +19,6 @@ button {
     table-layout: fixed;
 }
 
-.table-button {
-    width: 5%;
-}
-
 .pagination {
     display: flex;
     justify-content: flex-end;
@@ -45,7 +26,7 @@ button {
     margin-right: 16px;
 }
 
-.add-reader-button,
+.reserve-button,
 .close-modal {
     padding: 10px 16px !important;
     background-color: var(--primary-color) !important;
@@ -59,7 +40,7 @@ button {
 }
 
 
-.add-reader-button:hover,
+.reserve-button:hover,
 .close-modal:hover {
     background-color: #0056b3;
 }
@@ -72,6 +53,16 @@ form {
     text-align: center;
 }
 
+.message {
+    margin: 12px 0;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--success-color);
+
+    &.error {
+        color: var(--error-color);
+    }
+}
 
 .modal-container {
     position: fixed;
@@ -86,8 +77,7 @@ form {
 }
 
 .modal-content {
-    display: flex;
-    flex-direction: column;
+
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -126,26 +116,23 @@ form {
 
 }
 
-.confirm-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.modal-footer {
+    margin-top: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+    justify-content: flex-end;
 
-.message {
-    margin: 12px 0;
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--success-color);
+    button {
+        padding: 8px 16px;
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-    &.error {
-        color: var(--error-color);
+    button:hover {
+        background-color: #e0e0e0;
+
     }
 }
 
@@ -176,51 +163,4 @@ form {
     // &+& {
     //     margin-left: 16px;
     // }
-}
-
-
-.add-search-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 50px 20px 20px 0;
-
-    .search-box {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: white;
-    }
-}
-
-/* CSS để hiển thị logo và ô input */
-
-
-.search-box input[type="text"] {
-    border: none;
-    outline: none;
-    padding: 0 0 0 10px !important;
-    margin-bottom: 0 !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    width: 200px;
-}
-
-.search-box button {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.search-box button img {
-    height: 20px;
-    width: 20px;
-}
-
-.font-20 {
-    font-size: 20px;
 }

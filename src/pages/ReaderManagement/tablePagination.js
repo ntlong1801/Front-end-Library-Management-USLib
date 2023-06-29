@@ -15,7 +15,7 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
   if (name !== '') {
     totalPages = Math.ceil(searchResults.length / itemsPerPage)
   }
-  
+
 
   // Lấy dữ liệu cho trang hiện tại
   const getDataForCurrentPage = () => {
@@ -40,10 +40,10 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
     // eslint-disable-next-line no-restricted-globals
     const isDelete = confirm(`Bạn chắc chắn muốn xóa ${name}`);
 
-		if (isDelete) {
-			await deleteReader(id);
-			onSignal(id)
-		}
+    if (isDelete) {
+      await deleteReader(id);
+      onSignal(id)
+    }
   };
 
 
@@ -76,9 +76,9 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
               <td>{item.email}</td>
               <td>{item.dateCreated}</td>
               <td>{item.typeOfReader}</td>
-              <td className={cx('table-button')}><div>
+              <td className={cx('table-button')}>
                 <UpdateReaderModal onSignal={handleOnSignalFromUpdate} id={item.id} />
-              </div></td>
+              </td>
               <td className={cx('table-button')}> <button onClick={() => handleDel(item.fullName, item.id)}>Xóa</button></td>
             </tr>
           ))}
