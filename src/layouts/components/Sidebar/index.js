@@ -11,6 +11,7 @@ import {
 	faMagnifyingGlass,
 	faNotesMedical,
 	faRightFromBracket,
+	faCircleCheck
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 
@@ -30,12 +31,17 @@ const MENU = [
 	{
 		icon: faUser,
 		title: 'Quản lý độc giả',
-		to: 'reader',
+		to: '/reader',
 	},
 	{
 		icon: faNotesMedical,
 		title: 'Lập phiếu mượn-trả sách',
 		to: 'record',
+	},
+	{
+		icon: faCircleCheck,
+		title: 'Quy định',
+		to: '/regulation',
 	},
 ];
 
