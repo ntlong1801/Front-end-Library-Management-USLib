@@ -20,3 +20,9 @@ export const post = async (url, data, config = {}) => {
 
 	return res.data;
 };
+
+export const patch = async (url, data, config = {}) => {
+	const res = await authenInstance.patch(url, data, config)
+
+	return res.data;
+};

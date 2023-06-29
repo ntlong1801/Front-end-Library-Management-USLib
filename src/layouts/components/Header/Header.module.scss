@@ -24,6 +24,49 @@
     padding: 4px 8px;
     margin-right: 12px;
 
+    &:hover {
+        cursor: pointer;
+    }
+
+    &-actions {
+        min-width: 180px !important;
+    }
+
+    &-action-item {
+        display: flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: var(--primary-color);
+
+            .user-action-title {
+                color: var(--white-color);
+            }
+
+            .user-action-icon {
+                svg {
+                    color: var(--white-color);
+                }
+            }
+        }
+    }
+
+    &-action-icon {
+        margin-right: 6px;
+
+        svg {
+            color: var(--black-color);
+        }
+    }
+
+    &-action-title {
+        color: var(--black-color);
+        margin-top: 0;
+        font-weight: 400;
+    }
+
     .avatar {
         width: 40px;
         height: 40px;
@@ -58,5 +101,50 @@
     svg {
         color: var(--icon-color);
         font-size: 1.6rem;
+    }
+}
+
+.modal {
+
+    &-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        inset: 0px;
+    }
+
+    width: 280px;
+
+    &-heading {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    &-form {
+        width: 100%;
+    }
+
+    .form {
+
+        &-group+.form-group {
+            margin-top: 6px;
+        }
+
+        &-label {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        &-control {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 6px 8px;
+            width: 100%;
+        }
+    }
+
+    &-actions {
+        margin-top: 12px;
+        display: flex;
+        justify-content: flex-end;
     }
 }

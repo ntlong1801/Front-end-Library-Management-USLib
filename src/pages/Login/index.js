@@ -1,15 +1,17 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import CryptoJS from 'crypto-js';
 
 import styles from './Login.module.scss';
 import images from '@/assets/images';
 import * as authenServices from '@/service/authenService';
-import { useNavigate } from 'react-router-dom';
+import useGlobalContext from '@/hooks/useGlobalContext';
 
 const cx = classNames.bind(styles);
 
-function Login() {
+function Login () {
+	const [state, setState] = useGlobalContext()
 	const [id, setId] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -17,6 +19,8 @@ function Login() {
 	const [isError, setIsError] = useState(false);
 
 	const navigator = useNavigate();
+
+	console.log(state)
 
 	const handleLogin = async () => {
 		if (id.length === 8) {
@@ -31,8 +35,16 @@ function Login() {
 				setIsError(true);
 				setMessage(data.msg);
 			} else {
-				localStorage.setItem('refresh_token', data.refreshToken);
+				var ciphertext = CryptoJS.AES.encrypt(data.refreshToken, process.env.REACT_APP_ENCRYPT_SECRET_KEY).toString();
+				setState(prev => {
+					return {
+						...prev,
+						id: id,
+						isLogin: true
+					}
+				})
 
+				localStorage.setItem('refresh_token', ciphertext);
 				navigator('/');
 			}
 		}

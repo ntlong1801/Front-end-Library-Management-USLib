@@ -16,7 +16,7 @@ const ReaderManagement = () => {
     const [searchResults, setSearchResults] = useState([]);
     const itemsPerPage = 10; // Số dòng trong mỗi trang
 
-    async function fetchReader() {
+    async function fetchReader () {
         const data = await getAllReader();
         console.log(data);
         setDataList(data.readers);
@@ -33,8 +33,8 @@ const ReaderManagement = () => {
         else {
             setDataList((prev) => {
                 return prev.filter((reader) => {
-					return reader.id !== signal;
-				});
+                    return reader.id !== signal;
+                });
             })
         }
     };
@@ -50,10 +50,10 @@ const ReaderManagement = () => {
 
     const filterResults = (name) => {
         const results = dataList.filter((reader) =>
-          reader.fullName.toLowerCase().includes(name.toLowerCase())
+            reader.fullName.toLowerCase().includes(name.toLowerCase())
         );
         setSearchResults(results);
-      };
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -63,9 +63,10 @@ const ReaderManagement = () => {
                         <AddReaderModal onSignal={handleSignalFromModal} />
                     </div>
                     <div className={cx('search-box')}>
-                        <input type="text" placeholder="Tìm kiếm độc giả theo tên" onChange= {(e)=> {
+                        <input type="text" placeholder="Tìm kiếm độc giả theo tên" onChange={(e) => {
                             filterResults(e.target.value)
-                            setName (e.target.value)}} />
+                            setName(e.target.value)
+                        }} />
                         <button type="submit" onClick={handleSearch}>
                             <img src={images.search} alt="searchBox" />
                         </button>
@@ -74,7 +75,7 @@ const ReaderManagement = () => {
                 <div className={cx('table-container')}>
                     <div>
                         <TableWithPagination data={dataList} searchResults={searchResults} name={name}
-                         itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} />
+                            itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} />
 
                     </div>
                 </div>

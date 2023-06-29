@@ -1,9 +1,5 @@
 import classNames from 'classnames/bind';
-
-import styles from './Sidebar.module.scss';
-
-import images from '@/assets/images';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faBook,
@@ -14,6 +10,11 @@ import {
 	faCircleCheck
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import CryptoJS from 'crypto-js';
+
+import styles from './Sidebar.module.scss';
+import images from '@/assets/images';
+import * as authenService from '@/service/authenService'
 
 const cx = classNames.bind(styles);
 
@@ -49,14 +50,40 @@ const AUX_MENU = [
 	{
 		icon: faGear,
 		title: 'Cài đặt',
+		type: 'SETTING'
 	},
 	{
 		icon: faRightFromBracket,
 		title: 'Đăng xuất',
+		type: 'LOG_OUT'
 	},
 ];
 
-function Sidebar() {
+function Sidebar () {
+	const navigator = useNavigate()
+
+	const handleMenu = async (type) => {
+		switch (type) {
+			case 'LOG_OUT':
+				var ciphertext = localStorage.getItem('refresh_token')
+				var bytes = CryptoJS.AES.decrypt(ciphertext, process.env.REACT_APP_ENCRYPT_SECRET_KEY);
+				var refreshToken = bytes.toString(CryptoJS.enc.Utf8);
+
+				const res = await authenService.logOut({
+					refresh_token: refreshToken
+				})
+
+				if (res.result) {
+					localStorage.removeItem('refresh_token')
+					localStorage.removeItem('id')
+					navigator('/login')
+				}
+
+				break;
+			default:
+
+		}
+	}
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('logo')}>
@@ -101,6 +128,7 @@ function Sidebar() {
 							<Link
 								to={item.to}
 								className={cx('menu-link')}
+								onClick={() => handleMenu(item.type)}
 							>
 								<FontAwesomeIcon
 									className={cx('menu-icon')}
