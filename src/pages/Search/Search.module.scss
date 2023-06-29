@@ -1,1 +1,153 @@
-.wrapper {}
+.wrapper {
+    border-radius: 10px;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+}
+
+.search {
+    width: 360px;
+    padding: 12px;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    margin-right: 12px;
+
+    display: flex;
+    align-items: center;
+
+    &-control {
+        height: 100%;
+        width: 100%;
+        font-size: 1.6rem;
+        caret-color: var(--primary-color);
+    }
+}
+
+.body {
+    margin-top: 12px;
+}
+
+table {
+    font-family: "Roboto", sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+thead tr:first-child {
+    td {
+        font-weight: 500;
+    }
+}
+
+td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:last-child {
+        text-align: center;
+    }
+}
+
+tr:nth-child(even) {
+    background-color: #E4F0F4;
+}
+
+.btn-info {
+    padding: 4px 6px !important;
+}
+
+.detail {
+
+    &-inner {
+        display: flex;
+    }
+
+    .control {
+        margin-bottom: 12px;
+    }
+
+    .photos {
+        width: 240px;
+    }
+
+    .info {
+        flex: 1;
+        margin-left: 24px;
+    }
+
+    .heading {
+        color: var(--primary-color);
+        margin-bottom: 8px;
+
+        &~.heading {
+            margin-top: 8px;
+        }
+    }
+
+    .field+.field {
+        margin-top: 6px;
+    }
+
+    .field {
+        color: var(--text-dark-color);
+
+        &-heading {
+            font-size: 1.7rem;
+            font-weight: 500;
+        }
+
+        &-content {
+            margin-left: 12px;
+            font-size: 1.6rem;
+            font-weight: 400;
+
+            &.active {
+                color: var(--success-color);
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.filter {
+
+    &-popper {
+        width: 240px;
+    }
+
+    &-group {
+        display: flex;
+        align-items: center;
+
+        &+.filter-group {
+            margin-top: 6px;
+        }
+
+        select {
+            flex: 1;
+            font-size: 1.6rem;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            background-color: var(--white-color);
+            padding: 4px 6px;
+            margin-left: 6px;
+        }
+    }
+
+    &-label {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+}
