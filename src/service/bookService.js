@@ -12,9 +12,18 @@ export const getAllBook = async () => {
 export const createBook = async (data, config) => {
 	try {
 		const result = await api.post('/api/book', data, config);
-		return result.data;
+		return result;
 	} catch (er) {
 		throw new Error('Can not operate post book API');
+	}
+};
+
+export const editBook = async (id, data, config) => {
+	try {
+		const result = await api.patch(`/api/book/${id}`, data, config);
+		return result;
+	} catch (er) {
+		throw new Error('Can not operate edit book API');
 	}
 };
 
