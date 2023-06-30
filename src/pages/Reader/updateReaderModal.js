@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import styles from './Reader.module.scss';
 import classNames from 'classnames/bind';
-import { getOneReader, updateOneReader } from '@/service/readerService'
+
+import styles from './Reader.module.scss';
 import Button from '@/components/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { getOneReader, updateOneReader } from '@/service/readerService'
 
 const cx = classNames.bind(styles);
-
 
 const UpdateReaderModal = ({ onSignal, id }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -86,9 +84,11 @@ const UpdateReaderModal = ({ onSignal, id }) => {
 
     return (
         <div>
-            <Button isIcon onClick={() => openModal(id)} >
-                <FontAwesomeIcon icon={faPen} />
+            <Button onClick={() => openModal(id)}>
+                Sửa
             </Button>
+
+
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

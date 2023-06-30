@@ -11,15 +11,15 @@ const cx = classNames.bind(styles);
 
 function DefaultLayout ({ children }) {
 	const [state] = useGlobalContext()
-	const [isLogged, setIsLogged] = useState(false)
+	const [isLogged, setIsLogged] = useState(true)
 
 	const navigator = useNavigate()
 
-	useEffect(() => {
-		if (!state.isLogin) navigator('/login')
-		else setIsLogged(true)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	// useEffect(() => {
+	// 	if (!state.isLogin) navigator('/login')
+	// 	else setIsLogged(true)
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [])
 
 	const renderUI = () => {
 		if (isLogged) {

@@ -89,7 +89,7 @@ const AddReaderModal = ({ onSignal }) => {
 
     return (
         <div>
-            <Button onClick={openModal} active>
+            <Button onClick={openModal} >
                 Thêm độc giả
             </Button>
 

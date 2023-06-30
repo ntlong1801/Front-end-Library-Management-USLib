@@ -9,7 +9,7 @@ import AddRegulationModal from "./addRegulationModal";
 
 const cx = classNames.bind(styles);
 
-const ReaderManagement = () => {
+const Regulation = () => {
     const [dataList, setDataList] = useState([]);
     const itemsPerPage = 10; // Số dòng trong mỗi trang
 
@@ -53,6 +53,8 @@ const ReaderManagement = () => {
                 </div>
             </div>
 
+
+
         </div>
 
 
@@ -61,4 +63,4 @@ const ReaderManagement = () => {
     );
 };
 
-export default ReaderManagement;
+export default Regulation;

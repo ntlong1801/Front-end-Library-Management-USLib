@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import TableWithPagination from './tablePagination';
 import classNames from 'classnames/bind';
-import { getAllReader } from "@/service/readerService";
+
 import styles from './Reader.module.scss';
+import images from "@/assets/images";
+import TableWithPagination from './tablePagination';
 import AddReaderModal from "./addReaderModal";
-import { viewRequest } from '@/service/readerService'
+import { getAllReader, viewRequest } from "@/service/readerService";
 
 const cx = classNames.bind(styles);
 
-const Reader = () => {
+const ReaderManagement = () => {
     const [dataList, setDataList] = useState([]);
     const [requestList, setRequestList] = useState([]);
     const [name, setName] = useState('')
@@ -29,12 +30,9 @@ const Reader = () => {
             setRequestList([])
         }
     }
-
-
     useEffect(() => {
         fetchReader();
         fetchRequest();
-
     }, []);
 
     const handleSignalFromModal = (signal) => {
@@ -86,14 +84,15 @@ const Reader = () => {
                             }} />
                             setName(e.target.value)
                         }} />
+                        <button type="submit" onClick={handleSearch}>
+                            <img src={images.search} alt="searchBox" />
+                        </button>
                     </div>
-
                 </div>
                 <div className={cx('table-container')}>
                     <div>
                         <TableWithPagination data={dataList} searchResults={searchResults} name={name}
                             itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} type={true} />
-
                     </div>
                 </div>
                 <br />
@@ -103,7 +102,6 @@ const Reader = () => {
                     <div>
                         <TableWithPagination data={requestList} searchResults={searchResults} name={name}
                             itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} type={false} />
-
                     </div>
                 </div>
             </div>
@@ -111,4 +109,4 @@ const Reader = () => {
     );
 };
 
-export default Reader;
+export default ReaderManagement;
