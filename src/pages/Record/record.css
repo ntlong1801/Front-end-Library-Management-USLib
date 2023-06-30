@@ -1,0 +1,75 @@
+.record-page {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.tab-buttons {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+	margin-right: 500px;
+}
+
+.tab-buttons button {
+	padding: 10px 20px;
+	margin-right: 10px;
+	font-size: 16px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.tab-buttons button.active,
+.tab-buttons button:hover,
+.tab-buttons button:focus {
+	background-color: #00ace8;
+	color: #fff;
+}
+
+.tab-content {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.input-group {
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.input-group label {
+	margin-right: 10px;
+	width: 150px;
+	text-align: left;
+}
+
+.input-group input {
+	padding: 5px;
+	font-size: 14px;
+	flex: 1;
+	border: 1px solid #ccc;
+}
+
+.submit-btn {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #4caf50;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 50px;
+	margin-left: 70px;
+}
+
+.response-msg {
+	margin-top: 20px;
+	font-size: 16px;
+	color: red;
+}
