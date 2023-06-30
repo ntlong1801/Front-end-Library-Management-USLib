@@ -21,6 +21,6 @@ export const publicRoutes = [
 	{ path: '/makingloan', element: MakingLoanPage, layout: DefaultLayout },
 	{ path: '/reader', element: ReaderManagementPage, layout: DefaultLayout },
 	{ path: '/regulation', element: RegulationPage, layout: DefaultLayout },
-	{ path: '/student', element: StudentPage, layout: DefaultLayout },
-	{ path: '/student_history', element: StudentHistoryPage, layout: DefaultLayout },
+	{ path: '/home', element: StudentPage, layout: DefaultLayout },
+	{ path: '/history', element: StudentHistoryPage, layout: DefaultLayout },
 ];

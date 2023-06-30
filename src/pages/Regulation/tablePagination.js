@@ -4,25 +4,21 @@ import styles from './Regulation.module.scss';
 import classNames from 'classnames/bind';
 import { deleteRegulation } from '@/service/regulationService';
 import UpdateRegulationModal from './updateRegulationModal';
+import Button from '@/components/Button';
 
 const cx = classNames.bind(styles);
 
-const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal }) => {
+const TableWithPagination = ({ data, itemsPerPage, onSignal }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // Tính toán số trang dựa trên số lượng dữ liệu và số lượng dữ liệu trên mỗi trang
   let totalPages = Math.ceil(data.length / itemsPerPage);
-  if (name !== '') {
-    totalPages = Math.ceil(searchResults.length / itemsPerPage)
-  }
 
 
   // Lấy dữ liệu cho trang hiện tại
   const getDataForCurrentPage = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    if (name !== '')
-      return searchResults.slice(startIndex, endIndex);
     return data.slice(startIndex, endIndex);
   };
 
@@ -70,10 +66,10 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
               <td>{item.name}</td>
               <td>{item.default_value}</td>
               <td>{item.current_value}</td>
-              <td className={cx('table-button')}><div>
+              <td >
                 <UpdateRegulationModal onSignal={handleOnSignalFromUpdate} data={item} />
-              </div></td>
-              <td className={cx('table-button')}> <button onClick={() => handleDel(item.name, item.id)}>Xóa</button></td>
+              </td>
+              <td > <Button onClick={() => handleDel(item.name, item.id)}>Xóa</Button></td>
             </tr>
           ))}
 
@@ -83,9 +79,9 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 
       {/* Hiển thị phân trang */}
       < div className={cx('pagination')} >
-        <button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
-        <span>{currentPage} / {totalPages}</span>
-        <button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+        <Button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</Button>
+        <span className={cx('p-8')}>{currentPage} / {totalPages}</span>
+        <Button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</Button>
       </div>
     </div >
 

@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { publicRoutes } from './routes';
 
-function App() {
+function App () {
 	return (
 		<Router>
-			<div className='App'>
+			<div id='App'>
 				<Routes>
 					{publicRoutes.map((item, index) => {
 						let Layout;

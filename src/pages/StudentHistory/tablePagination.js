@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './StudentHistory.module.scss';
 import classNames from 'classnames/bind';
 import ModalBox from './renewalBookModal'
+import Button from '@/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -59,9 +60,9 @@ const TableWithPagination = ({ data, itemsPerPage }) => {
 
       {/* Hiển thị phân trang */}
       <div className={cx('pagination')}>
-        <button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
-        <span>{currentPage} / {totalPages}</span>
-        <button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+        <Button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</Button>
+        <span className={cx('p-8')}>{currentPage} / {totalPages}</span>
+        <Button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</Button>
       </div>
     </div>
   );

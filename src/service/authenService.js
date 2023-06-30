@@ -17,8 +17,20 @@ export const login = async (data, config = {}) => {
 		throw new Error('Can not operate login API');
 	}
 };
+export const logOut = async (data, config = {}) => {
+	try {
+		const result = await authenAPI.post('/api/auth/logout', data, config);
+		return result;
+	} catch (er) {
+		throw new Error('Can not operate logout API');
+	}
+};
+export const changePassword = async (data, config = {}) => {
+	try {
+		const result = await authenAPI.patch('/api/auth/change-password', data, config);
+		return result;
+	} catch (er) {
+		throw new Error('Can not operate change password API');
+	}
+};
 
-// Here: change password, refresh token, log-out, ...!
-// Using:
-//Ex: Muốn đăng ký chẳng hạn thì import authenServer và gọi async func register(data, config if need)
-//=> Dùng promise  để nhận result

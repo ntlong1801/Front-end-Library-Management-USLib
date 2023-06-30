@@ -1,3 +1,6 @@
+.m-8 {
+    margin: 8px;
+}
 .wrapper {
     display: flex;
     height: 56px;
@@ -23,6 +26,49 @@
     border-radius: 6px;
     padding: 4px 8px;
     margin-right: 12px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &-actions {
+        min-width: 180px !important;
+    }
+
+    &-action-item {
+        display: flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: var(--primary-color);
+
+            .user-action-title {
+                color: var(--white-color);
+            }
+
+            .user-action-icon {
+                svg {
+                    color: var(--white-color);
+                }
+            }
+        }
+    }
+
+    &-action-icon {
+        margin-right: 6px;
+
+        svg {
+            color: var(--black-color);
+        }
+    }
+
+    &-action-title {
+        color: var(--black-color);
+        margin-top: 0;
+        font-weight: 400;
+    }
 
     .avatar {
         width: 40px;
@@ -59,4 +105,13 @@
         color: var(--icon-color);
         font-size: 1.6rem;
     }
+}
+
+.box {
+    padding: 6px 0;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
 }
