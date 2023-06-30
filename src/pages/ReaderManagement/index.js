@@ -69,6 +69,7 @@ const ReaderManagement = () => {
         setSearchResults(results);
     };
 
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content-container')}>
