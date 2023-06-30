@@ -53,3 +53,21 @@ export const search = async (data, config = {}) => {
         throw new Error('Can not operate login API');
     }
 };
+
+export const viewRequest = async (config = {}) => {
+    try {
+        const result = await api.get(`/api/interaction/request`, config);
+        return result;
+    } catch (er) {
+        throw new Error('Can not operate login API');
+    }
+};
+
+export const deleteRequest = async (student_id, config = {}) => {
+    try {
+        const result = await api.deleteHTTP(`/api/interaction/${student_id}`, config);
+        return result;
+    } catch (er) {
+        throw new Error('Can not operate login API');
+    }
+};

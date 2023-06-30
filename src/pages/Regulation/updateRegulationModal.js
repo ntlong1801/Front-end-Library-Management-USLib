@@ -69,7 +69,7 @@ const UpdateRegulationModal = ({ onSignal, data }) => {
                 <div className={cx('modal-content')}>
                     <div className={cx('modal-header', 'mb-8')}>
                         <h2 className={cx('modal-title')}>Điền thông tin</h2>
-                        <button onClick={closeModal} className={cx('close-modal')}>X</button>
+                        <Button onClick={closeModal} >X</Button>
                     </div>
                     <div className={cx('modal-body')}>
                         <form onSubmit={handleUpdateReader}>

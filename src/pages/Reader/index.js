@@ -9,17 +9,27 @@ const cx = classNames.bind(styles);
 
 const Reader = () => {
     const [dataList, setDataList] = useState([]);
+    const [requestList, setRequestList] = useState([]);
     const [name, setName] = useState('')
     const [searchResults, setSearchResults] = useState([]);
-    const itemsPerPage = 10; // Số dòng trong mỗi trang
+    const itemsPerPage = 5; // Số dòng trong mỗi trang
 
     async function fetchReader () {
         const data = await getAllReader();
         setDataList(data.readers);
     }
-
+    async function fetchRequest () {
+        const request = await viewRequest();
+        if (request.result === true) {
+            setRequestList(request.request)
+        }
+        else {
+            setRequestList([])
+        }
+    }
     useEffect(() => {
         fetchReader();
+        fetchRequest();
 
     }, []);
 
@@ -27,14 +37,18 @@ const Reader = () => {
         if (signal === 'fetchData') {
             fetchReader();
         }
+        else if (signal === 'fetchDataRequest') {
+            fetchRequest()
+        }
         else {
             setDataList((prev) => {
                 return prev.filter((reader) => {
                     return reader.id !== signal;
                 });
-            })
+            });
         }
-    };
+    }
+
 
     const handleSearch = () => {
         setDataList((prev) => {
@@ -52,6 +66,7 @@ const Reader = () => {
         setSearchResults(results);
     };
 
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content-container')}>
@@ -60,8 +75,11 @@ const Reader = () => {
                         <AddReaderModal onSignal={handleSignalFromModal} />
                     </div>
                     <div className={cx('search-box')}>
-                        <input className={cx('search-control')} type="text" placeholder="Tìm kiếm độc giả theo tên" onChange={(e) => {
-                            filterResults(e.target.value)
+                        <input type="text" placeholder="Tìm kiếm độc giả theo tên" onChange={(e) => {
+                            <input type="text" placeholder="Tìm kiếm độc giả theo tên" onChange={(e) => {
+                                filterResults(e.target.value)
+                                setName(e.target.value)
+                            }} />
                             setName(e.target.value)
                         }} />
                     </div>
@@ -70,7 +88,18 @@ const Reader = () => {
                 <div className={cx('table-container')}>
                     <div>
                         <TableWithPagination data={dataList} searchResults={searchResults} name={name}
-                            itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} />
+                            itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} type={true} />
+
+                    </div>
+                </div>
+                <br />
+                <h2>Yêu cầu lập thẻ độc giả: </h2>
+                <br />
+                <div className={cx('table-container')}>
+                    <div>
+                        <TableWithPagination data={requestList} searchResults={searchResults} name={name}
+                            itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} type={false} />
+
                     </div>
                 </div>
             </div>

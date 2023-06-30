@@ -36,7 +36,7 @@ export const renewalBorrowBook = async (id, config = {}) => {
     }
 };
 
-export const reserveBook = async (data, config = {}) => {
+export const requestCreateCard = async (data, config = {}) => {
     try {
         const result = await api.post(`/api/interaction`, data, config);
         return result;

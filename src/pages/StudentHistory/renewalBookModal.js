@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import styles from './StudentHistory.module.scss';
 import classNames from 'classnames/bind';
 import { renewalBorrowBook } from '@/service/studentService'
+import Button from '@/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -50,7 +51,7 @@ const ModalBox = (data) => {
 
     return (
         <div>
-            <button onClick={openModal}>Gia hạn</button>
+            <Button onClick={openModal}>Gia hạn</Button>
 
             <Modal
                 isOpen={modalIsOpen}
@@ -61,7 +62,7 @@ const ModalBox = (data) => {
                 <div className={cx('modal-content')}>
                     <div className={cx('modal-header')}>
                         <h2 className={cx('modal-title')}>Điền thông tin</h2>
-                        <button onClick={closeModal} className={cx('close-modal')}>X</button>
+                        <Button onClick={closeModal} >X</Button>
                     </div>
                     <div className={cx('modal-body')}>
                         <form onSubmit={handleRenewBook}>

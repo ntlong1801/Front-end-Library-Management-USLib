@@ -13,6 +13,8 @@ import Button from '@/components/Button';
 import * as authenService from '@/service/authenService'
 import toastOption from '@/utils/toastOption';
 import useGlobalContext from '@/hooks/useGlobalContext';
+import { useNavigate } from 'react-router-dom';
+import { viewRequest } from '@/service/readerService'
 
 const customStyles = {
 	content: {
@@ -25,6 +27,8 @@ const customStyles = {
 	},
 };
 
+
+
 const cx = classNames.bind(styles);
 const MENU = [
 	{
@@ -35,7 +39,33 @@ const MENU = [
 ]
 Modal.setAppElement('#root')
 
-function Header () {
+
+
+function Header() {
+	const navigate = useNavigate();
+	const [showNotifications, setShowNotifications] = useState(false)
+	const [notifications, setNotifications] = useState([])
+
+	async function fetchData() {
+		const data = await viewRequest();
+		if (data.result === true) {
+			setNotifications(data.request)
+		}
+		else {
+			setNotifications([])
+		}
+	}
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	const handleViewDetail = () => {
+		setShowNotifications(false);
+
+		navigate('/reader');
+	}
+
 	const [state, setState] = useGlobalContext()
 	const [time, setTime] = useState(new Date())
 	const [modalIsOpen, setIsOpen] = useState(false);
@@ -85,6 +115,7 @@ function Header () {
 	}
 
 
+
 	return (
 		<div className={cx('wrapper')}>
 			<p className={cx('date')}>{time.toLocaleTimeString()} {time.toLocaleDateString()}</p>
@@ -121,9 +152,24 @@ function Header () {
 					</div>
 				</Tippy>
 			</div>
-			<button className={cx('btn-notify')}>
-				<FontAwesomeIcon icon={faBell} />
-			</button>
+			<Tippy
+				placement='bottom'
+				visible={showNotifications}
+				interactive
+				render={attrs => (
+					<div className={cx('box')} tabIndex="-1" {...attrs}>
+
+						<p className={cx('m-8')}>Có {notifications.length} yêu cầu lập thẻ độc giả</p>
+						<Button className={cx('center')} onClick={handleViewDetail}>Xem chi tiết</Button>
+					</div>
+
+				)}
+				onClickOutside={() => setShowNotifications(false)}
+			>
+				<button className={cx('btn-notify')} onClick={() => setShowNotifications(true)}>
+					<FontAwesomeIcon icon={faBell} />
+				</button>
+			</Tippy>
 
 			<Modal
 				isOpen={modalIsOpen}
@@ -179,8 +225,10 @@ function Header () {
 			</Modal>
 
 			<ToastContainer />
-		</div >
+
+		</div>
 	);
 }
+
 
 export default Header;

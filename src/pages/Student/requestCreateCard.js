@@ -2,20 +2,23 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import styles from './StudentHome.module.scss';
 import classNames from 'classnames/bind';
-import { reserveBook } from '@/service/studentService'
+import { requestCreateCard } from '@/service/studentService';
+import Button from '@/components/Button';
 
 const cx = classNames.bind(styles);
 
 
-const ModalBox = (data) => {
+const RequestCreateCard = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [message, setMessage] = useState('');
     const [isError, setIsError] = useState(false)
     const [formData, setFormData] = useState({
         student_id: '',
-        name: '',
-        bookTitle: data.book.name,
-        receive_date: ''
+        fullName: '',
+        email: '',
+        address: '',
+        birthday: '',
+        typeOfReader: 'DocGiaX',
     });
 
     const openModal = () => {
@@ -33,12 +36,22 @@ const ModalBox = (data) => {
         });
     };
 
-    const handleReserveBook = async (e) => {
+    const [selectedField, setSelectedField] = useState('');
+
+    const handleFieldChange = (e) => {
+        setSelectedField(e.target.value);
+        setFormData({
+            ...formData,
+            typeOfReader: e.target.value
+        });
+    };
+
+    const handleRequest = async (e) => {
         e.preventDefault();
         // // Xử lý logic khi submit form
-        const newData = formData;
-        newData.book_id = data.book.id;
-        const result = await reserveBook(newData);
+        const result = await requestCreateCard(formData);
+        console.log(result);
+
         if (result.result === false) {
             setIsError(true);
             setMessage(result.nmsg)
@@ -47,15 +60,17 @@ const ModalBox = (data) => {
         // Reset form data
         setFormData({
             student_id: '',
-            name: '',
-            bookTitle: '',
-            receive_date: ''
+            fullName: '',
+            email: '',
+            address: '',
+            birthday: '',
+            typeOfReader: 'DocGiaX',
         });
     };
 
     return (
         <div>
-            <button onClick={openModal}>Đặt trước</button>
+            <Button onClick={openModal}>Yêu cầu lập thẻ độc giả</Button>
 
             <Modal
                 isOpen={modalIsOpen}
@@ -69,7 +84,7 @@ const ModalBox = (data) => {
                         <button onClick={closeModal} className={cx('close-modal')}>X</button>
                     </div>
                     <div className={cx('modal-body')}>
-                        <form onSubmit={handleReserveBook}>
+                        <form onSubmit={handleRequest}>
 
                             <label>
                                 Mã số sinh viên:
@@ -86,35 +101,54 @@ const ModalBox = (data) => {
                                 Tên học sinh:
                                 <input
                                     type="text"
-                                    name="name"
-                                    value={formData.name}
+                                    name="fullName"
+                                    value={formData.fullName}
                                     required
                                     onChange={handleInputChange}
                                     onFocus={() => setMessage()}
                                 />
                             </label>
                             <label>
-                                Tên sách:
+                                email:
                                 <input
                                     type="text"
-                                    name="bookTitle"
-                                    value={data.book.name}
-                                    disabled
-                                    onChange={handleInputChange}
-                                    onFocus={() => setMessage()}
-                                />
-                            </label>
-                            <label>
-                                Ngày nhận sách (dd/mm/yyyy):
-                                <input
-                                    type="text"
-                                    name="receive_date"
-                                    value={formData.receive_date}
+                                    name="email"
+                                    value={formData.email}
                                     required
                                     onChange={handleInputChange}
                                     onFocus={() => setMessage()}
                                 />
                             </label>
+                            <label>
+                                Địa chỉ:
+                                <input
+                                    type="text"
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleInputChange}
+                                    onFocus={() => setMessage()}
+                                />
+                            </label>
+                            <label>
+                                Ngày sinh (dd/mm/yyyy):
+                                <input
+                                    type="text"
+                                    name="birthday"
+                                    value={formData.birthday}
+                                    required
+                                    onChange={handleInputChange}
+                                    onFocus={() => setMessage()}
+                                />
+                            </label>
+                            <div>
+                                <label>Loại độc giả:</label>
+                                <select value={selectedField} onChange={handleFieldChange} onFocus={() => {
+                                    setMessage('');
+                                }}>
+                                    <option value="DocGiaX" selected>Doc Gia X</option>
+                                    <option value="DocGiaY">Doc Gia Y</option>
+                                </select>
+                            </div>
                             <p className={cx('message', { error: isError })}>{message}</p>
                             <div className={cx('center')}>
                                 <button type="submit" className={cx('reserve-button')}>Đặt trước</button>
@@ -128,4 +162,4 @@ const ModalBox = (data) => {
     );
 };
 
-export default ModalBox;
+export default RequestCreateCard;

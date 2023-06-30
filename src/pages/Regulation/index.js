@@ -11,8 +11,6 @@ const cx = classNames.bind(styles);
 
 const ReaderManagement = () => {
     const [dataList, setDataList] = useState([]);
-    const [name, setName] = useState('')
-    const [searchResults, setSearchResults] = useState([]);
     const itemsPerPage = 10; // Số dòng trong mỗi trang
 
     async function fetchRegulation () {
@@ -37,21 +35,6 @@ const ReaderManagement = () => {
         }
     };
 
-    const handleSearch = () => {
-        setDataList((prev) => {
-            return prev.filter((reader) => {
-                const fullName = reader.fullName;
-                return fullName.toLowerCase().includes(name.toLowerCase());
-            })
-        })
-    }
-
-    const filterResults = (name) => {
-        const results = dataList.filter((reader) =>
-            reader.fullName.toLowerCase().includes(name.toLowerCase())
-        );
-        setSearchResults(results);
-    };
 
     return (
         <div className={cx('wrapper')}>
@@ -60,23 +43,15 @@ const ReaderManagement = () => {
                     <div className={cx('add-btn')}>
                         <AddRegulationModal onSignal={handleSignalFromModal} />
                     </div>
-                    <div className={cx('search-box')}>
-                        <input type="text" placeholder="Tìm kiếm quy định" onChange={(e) => {
-                            filterResults(e.target.value)
-                            setName(e.target.value)
-                        }} />
-                    </div>
                 </div>
                 <div className={cx('table-container')}>
                     <div>
-                        <TableWithPagination data={dataList} searchResults={searchResults} name={name}
+                        <TableWithPagination data={dataList}
                             itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} />
 
                     </div>
                 </div>
             </div>
-
-
 
         </div>
 

@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import styles from './Regulation.module.scss';
 import classNames from 'classnames/bind';
 import { addRegulation } from '@/service/regulationService'
+import Button from '@/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -64,9 +65,9 @@ const AddRegulationModal = ({ onSignal }) => {
 
     return (
         <div>
-            <button onClick={openModal} className={cx('add-regulation-button')}>
+            <Button onClick={openModal} >
                 Thêm quy định
-            </button>
+            </Button>
 
             <Modal
                 isOpen={modalIsOpen}
@@ -77,7 +78,7 @@ const AddRegulationModal = ({ onSignal }) => {
                 <div className={cx('modal-content')}>
                     <div className={cx('modal-header', 'mb-8')}>
                         <h2 className={cx('modal-title')}>Điền thông tin</h2>
-                        <button onClick={closeModal} className={cx('close-modal')}>X</button>
+                        <Button onClick={closeModal} >X</Button>
                     </div>
                     <div className={cx('modal-body')}>
                         <form onSubmit={handleAddReader}>

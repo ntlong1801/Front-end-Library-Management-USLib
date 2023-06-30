@@ -7,7 +7,9 @@ import {
 	faMagnifyingGlass,
 	faNotesMedical,
 	faRightFromBracket,
-	faCircleCheck
+	faCircleCheck,
+	faHome,
+	faHistory
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import CryptoJS from 'crypto-js';
@@ -19,6 +21,11 @@ import * as authenService from '@/service/authenService'
 const cx = classNames.bind(styles);
 
 const MENU = [
+	{
+		icon: faHome,
+		title: 'Trang chủ',
+		to: '/home',
+	},
 	{
 		icon: faMagnifyingGlass,
 		title: 'Tìm kiếm',
@@ -37,7 +44,12 @@ const MENU = [
 	{
 		icon: faNotesMedical,
 		title: 'Lập phiếu mượn-trả sách',
-		to: 'record',
+		to: '/record',
+	},
+	{
+		icon: faHistory,
+		title: 'Lịch sử mượn',
+		to: '/history',
 	},
 	{
 		icon: faCircleCheck,

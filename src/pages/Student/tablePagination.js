@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './StudentHome.module.scss';
 import classNames from 'classnames/bind';
-import ModalBox from './reserveBookModal'
+import Button from '@/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -40,7 +40,6 @@ const TableWithPagination = ({ data, itemsPerPage }) => {
             <th>Năm xuất bản</th>
             <th>Nhà xuất bản</th>
             <th>Trạng thái</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -53,9 +52,6 @@ const TableWithPagination = ({ data, itemsPerPage }) => {
               <td>{item.published_year}</td>
               <td>{item.publisher}</td>
               <td>{item.status}</td>
-              <td> {item.status === 'Có sẵn' && (
-                <ModalBox book={item} />
-              )}</td>
             </tr>
           ))}
 
@@ -65,9 +61,9 @@ const TableWithPagination = ({ data, itemsPerPage }) => {
 
       {/* Hiển thị phân trang */}
       <div className={cx('pagination')}>
-        <button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
-        <span>{currentPage} / {totalPages}</span>
-        <button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+        <Button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</Button>
+        <span className={cx('p-8')}>{currentPage} / {totalPages}</span>
+        <Button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</Button>
       </div>
     </div>
   );

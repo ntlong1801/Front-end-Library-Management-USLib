@@ -98,7 +98,7 @@ const UpdateReaderModal = ({ onSignal, id }) => {
                 <div className={cx('modal-content')}>
                     <div className={cx('modal-header', 'mb-8')}>
                         <h2 className={cx('modal-title')}>Điền thông tin</h2>
-                        <button onClick={closeModal} className={cx('close-modal')}>X</button>
+                        <Button onClick={closeModal} >X</Button>
                     </div>
                     <div className={cx('modal-body')}>
                         <form onSubmit={handleUpdateReader}>
@@ -161,9 +161,9 @@ const UpdateReaderModal = ({ onSignal, id }) => {
                                 />
                             </label>
                             <label>
-                                Ngày sinh:
+                                Ngày sinh (dd/mm/yyyy):
                                 <input
-                                    type="date"
+                                    type="text"
                                     name="birthday"
                                     value={formData.birthday}
                                     required
@@ -183,9 +183,9 @@ const UpdateReaderModal = ({ onSignal, id }) => {
                                 </select>
                             </div>
                             <label>
-                                Ngày lập thẻ:
+                                Ngày lập thẻ (dd/mm/yyyy):
                                 <input
-                                    type="date"
+                                    type="text"
                                     name="dateCreated"
                                     value={formData.dateCreated}
                                     required
