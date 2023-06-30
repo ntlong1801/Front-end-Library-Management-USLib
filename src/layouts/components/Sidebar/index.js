@@ -44,7 +44,7 @@ const MENU = [
 	{
 		icon: faNotesMedical,
 		title: 'Lập phiếu mượn-trả sách',
-		to: 'record',
+		to: '/record',
 	},
 	{
 		icon: faHistory,
