@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { getAllReader } from "@/service/readerService";
 import styles from './Reader.module.scss';
 import AddReaderModal from "./addReaderModal";
+import { viewRequest } from '@/service/readerService'
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,7 @@ const Reader = () => {
         const data = await getAllReader();
         setDataList(data.readers);
     }
+
     async function fetchRequest () {
         const request = await viewRequest();
         if (request.result === true) {
@@ -27,6 +29,8 @@ const Reader = () => {
             setRequestList([])
         }
     }
+
+
     useEffect(() => {
         fetchReader();
         fetchRequest();

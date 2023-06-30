@@ -73,7 +73,6 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 
 		return (
 			<div>
-
 				<table className={cx('full-width-table')}>
 					<thead>
 						<tr>
