@@ -1,8 +1,3 @@
-th,
-td {
-    padding: 10px 20px;
-}
-
 .m-16 {
     margin: 16px;
 }
@@ -12,6 +7,11 @@ td {
     width: 100%;
     display: flex;
     justify-content: center;
+
+    th,
+    td {
+        padding: 10px 20px;
+    }
 }
 
 .full-width-table {

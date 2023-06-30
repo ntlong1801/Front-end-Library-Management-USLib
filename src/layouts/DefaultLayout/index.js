@@ -10,14 +10,14 @@ import { Fragment, useEffect, useState } from 'react';
 const cx = classNames.bind(styles);
 
 function DefaultLayout ({ children }) {
-	const [state, setState] = useGlobalContext()
+	const [state] = useGlobalContext()
 	const [isLogged, setIsLogged] = useState(false)
 
 	const navigator = useNavigate()
 
 	useEffect(() => {
 		if (!state.isLogin) navigator('/login')
-		else setIsLogged(false)
+		else setIsLogged(true)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
@@ -33,6 +33,8 @@ function DefaultLayout ({ children }) {
 		}
 		return null;
 	}
+
+
 	return (
 		<Fragment>
 			{renderUI()}

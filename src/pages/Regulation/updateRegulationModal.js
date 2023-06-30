@@ -3,6 +3,9 @@ import Modal from 'react-modal';
 import styles from './Regulation.module.scss';
 import classNames from 'classnames/bind';
 import { updateOneRegulation } from '@/service/regulationService'
+import Button from '@/components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -50,17 +53,13 @@ const UpdateRegulationModal = ({ onSignal, data }) => {
             setMessage(result.msg)
             onSignal("fetchData")
         }
-
-
     };
 
     return (
         <div>
-            <button onClick={() => openModal()} className={cx('table-button')}>
-                Sửa
-            </button>
-
-
+            <Button isIcon onClick={() => openModal()} >
+                <FontAwesomeIcon icon={faPen} />
+            </Button>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

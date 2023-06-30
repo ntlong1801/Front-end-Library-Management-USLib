@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faMagnifyingGlass, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faListDots, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Toastify.css';
 
 import styles from './Book.module.scss';
 import * as bookService from '@/service/bookService';
+
 import images from '@/assets/images';
 import toastOption from '@/utils/toastOption';
 import Button from '@/components/Button';
+import Tippy from '@tippyjs/react/headless';
+
+import Popper from '@/components/Popper';
 
 const cx = classNames.bind(styles);
 
-function Book() {
+function Book () {
 	const [books, setBooks] = useState([]);
 	const [tab, setTab] = useState(1);
 	const [isEditing, setIsEditing] = useState(false);
@@ -29,8 +33,8 @@ function Book() {
 		number: '',
 		status: '',
 	});
-	const [photos, setPhotos] = useState(undefined);
 
+	const [photos, setPhotos] = useState(undefined);
 	const [editedBook, setEditedBook] = useState({
 		id: '',
 		name: '',
@@ -215,6 +219,12 @@ function Book() {
 					return book.id !== id;
 				});
 			});
+
+			if (data.result) {
+				toast.success(data.ms, toastOption)
+			} else {
+				toast.error(data.ms, toastOption)
+			}
 		}
 	};
 
@@ -267,8 +277,9 @@ function Book() {
 			/>
 		);
 	};
+
 	useEffect(() => {
-		async function fetchBook() {
+		async function fetchBook () {
 			const result = await bookService.getAllBook();
 
 			setBooks((prev) => {
@@ -307,19 +318,10 @@ function Book() {
 				>
 					Thêm / Chỉnh sửa sách
 				</Button>
-				<div className={cx('search')}>
-					<input
-						className={cx('search-control')}
-						placeholder='Tìm kiếm'
-					/>
-				</div>
-				<button className={cx('tab')}>
-					<FontAwesomeIcon icon={faMagnifyingGlass} />
-				</button>
 			</div>
 
 			<div className={cx('content')}>
-				<table className={cx('content-item', 'table', { active: tab === 1 })}>
+				<table className={cx('content-item', { active: tab === 1 })}>
 					<thead>
 						<tr>
 							<td width='15%'>ID</td>
@@ -332,7 +334,7 @@ function Book() {
 						</tr>
 					</thead>
 					<tbody>
-						{books.map((book, index) => {
+						{books.length > 0 ? books.map((book, index) => {
 							return (
 								<tr key={index}>
 									<td>{book.id}</td>
@@ -341,39 +343,55 @@ function Book() {
 									<td>{book.author}</td>
 									<td>{book.status}</td>
 									<td>{book.imported_date}</td>
-									<td>
-										<Button
-											className={cx('action')}
-											onClick={() => {
-												setTab(2);
-												setIsEditing(true);
-												//Data
-												setEditedBook({
-													id: book.id,
-													name: book.name,
-													genre: book.genre,
-													author: book.author,
-													publishedYear: book.published_year,
-													publisher: book.publisher,
-													number: book.number,
-													status: book.status,
-												});
+									<td style={{ "textAlign": "center" }}>
+										<Tippy
+											interactive
+											placement='top-start'
+											render={attrs => <div {...attrs} className='box'
+												tabIndex='-1'>
+												<Popper className={cx('sub-menu')}>
+													<Button
+														className={cx('action')}
+														onClick={() => {
+															setTab(2);
+															setIsEditing(true);
+															//Data
+															setEditedBook({
+																id: book.id,
+																name: book.name,
+																genre: book.genre,
+																author: book.author,
+																publishedYear: book.published_year,
+																publisher: book.publisher,
+																number: book.number,
+																status: book.status,
+															});
 
-												setEditedPhotos(book.photos[0]);
-											}}
-										>
-											<FontAwesomeIcon icon={faPen} />
-										</Button>
-										<Button
-											className={cx('action')}
-											onClick={() => handleDeleteBook(book.name, book.id)}
-										>
-											<FontAwesomeIcon icon={faTrash} />
-										</Button>
+															setEditedPhotos(book.photos[0]);
+														}}
+													>
+														<FontAwesomeIcon icon={faPen} />
+													</Button>
+													<Button
+														className={cx('action')}
+														onClick={() => handleDeleteBook(book.name, book.id)}
+													>
+														<FontAwesomeIcon icon={faTrash} />
+													</Button>
+												</Popper>
+											</div>}>
+											<Button className={cx('action')}>
+												<FontAwesomeIcon icon={faListDots} />
+											</Button>
+										</Tippy>
+
+
 									</td>
 								</tr>
 							);
-						})}
+						}) : <tr>
+							<td colSpan="7" style={{ "textAlign": "center" }}>Đang tải danh sách...</td>
+						</tr>}
 					</tbody>
 				</table>
 

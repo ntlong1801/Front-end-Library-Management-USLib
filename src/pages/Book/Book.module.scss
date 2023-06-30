@@ -2,26 +2,6 @@
     display: flex;
 }
 
-.search {
-    margin-left: auto;
-    height: 40px;
-    width: 240px;
-    padding: 12px;
-    background-color: var(--white-color);
-    border-radius: 8px;
-    margin-right: 12px;
-
-    display: flex;
-    align-items: center;
-
-    &-control {
-        height: 100%;
-        width: 100%;
-        font-size: 1.6rem;
-        caret-color: var(--primary-color);
-    }
-}
-
 .action {
     padding: 4px 6px !important;
 }
@@ -35,39 +15,43 @@
         &.active {
             display: block;
         }
+
+
     }
-}
 
+    table {
+        font-family: "Roboto", sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-table {
-    font-family: "Roboto", sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
 
-td,
-th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
+    thead tr:first-child {
+        td {
+            font-weight: 500;
+        }
+    }
 
-thead tr:first-child {
     td {
-        font-weight: 500;
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    tr:nth-child(even) {
+        background-color: #E4F0F4;
     }
 }
 
-td {
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
-tr:nth-child(even) {
-    background-color: #E4F0F4;
-}
+
 
 .form {
 
@@ -153,4 +137,8 @@ tr:nth-child(even) {
             margin-left: 16px;
         }
     }
+}
+
+.sub-menu {
+    min-width: 100px;
 }

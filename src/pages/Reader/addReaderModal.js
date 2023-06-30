@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import styles from './ReaderManagement.module.scss';
+import styles from './Reader.module.scss';
 import classNames from 'classnames/bind';
 import { addReader } from '@/service/readerService'
+import Button from '@/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -88,9 +89,9 @@ const AddReaderModal = ({ onSignal }) => {
 
     return (
         <div>
-            <button onClick={openModal} className={cx('add-reader-button')}>
+            <Button onClick={openModal} active>
                 Thêm độc giả
-            </button>
+            </Button>
 
             <Modal
                 isOpen={modalIsOpen}

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styles from './Regulation.module.scss';
+import styles from './Reader.module.scss';
 // import Modal from 'react-modal';
 import classNames from 'classnames/bind';
-import { deleteRegulation } from '@/service/regulationService';
-import UpdateRegulationModal from './updateRegulationModal';
+import { deleteReader } from '@/service/readerService';
+import UpdateReaderModal from './updateReaderModal';
 import Button from '@/components/Button';
-import Tippy from '@tippyjs/react/headless';
 import Popper from '@/components/Popper';
+import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListDots, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 
 const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal }) => {
 	const [currentPage, setCurrentPage] = useState(1);
-
 	// Tính toán số trang dựa trên số lượng dữ liệu và số lượng dữ liệu trên mỗi trang
 	let totalPages = Math.ceil(data.length / itemsPerPage);
 	if (name !== '') {
@@ -45,7 +44,7 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 		const isDelete = confirm(`Bạn chắc chắn muốn xóa ${name}`);
 
 		if (isDelete) {
-			await deleteRegulation(id);
+			await deleteReader(id);
 			onSignal(id)
 		}
 	};
@@ -61,29 +60,33 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 			<table className={cx('full-width-table')}>
 				<thead>
 					<tr>
-						<td width="30%">Tên</td>
-						<td>Giá trị mặc định</td>
-						<td>Giá trị hiện tại</td>
-						<td className={cx('table-button')} style={{ "width": "10%" }}>
-							Thao tác
-						</td>
+						<td width="25%">Họ và tên</td>
+						<td >Ngày sinh</td>
+						<td >Địa chỉ</td>
+						<td width="15%">Email</td>
+						<td width="15%">Ngày lập thẻ</td>
+						<td>Loại</td>
+						<td >Thao tác</td>
 					</tr>
 				</thead>
 				<tbody>
 					{getDataForCurrentPage().map((item, index) => (
 						<tr key={item.id} >
-							<td>{item.name}</td>
-							<td>{item.default_value}</td>
-							<td>{item.current_value}</td>
-							<td>
+							<td>{item.fullName}</td>
+							<td>{item.birthday}</td>
+							<td>{item.address}</td>
+							<td>{item.email}</td>
+							<td>{item.dateCreated}</td>
+							<td>{item.typeOfReader}</td>
+							<td style={{ "textAlign": "center" }} width="5%">
 								<Tippy
 									interactive
 									placement='top-start'
 									render={attrs => <div {...attrs} className='box'
 										tabIndex='-1'>
 										<Popper className={cx('sub-menu')}>
-											<UpdateRegulationModal onSignal={handleOnSignalFromUpdate} data={item} />
-											<Button isIcon onClick={() => handleDel(item.name, item.id)}>
+											<UpdateReaderModal onSignal={handleOnSignalFromUpdate} id={item.id} />
+											<Button isIcon onClick={() => handleDel(item.fullName, item.id)}>
 												<FontAwesomeIcon icon={faTrash} />
 											</Button>
 										</Popper>
@@ -95,7 +98,6 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 							</td>
 						</tr>
 					))}
-
 				</tbody>
 			</table >
 

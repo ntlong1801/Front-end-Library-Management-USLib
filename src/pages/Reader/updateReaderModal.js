@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import styles from './ReaderManagement.module.scss';
+import styles from './Reader.module.scss';
 import classNames from 'classnames/bind';
 import { getOneReader, updateOneReader } from '@/service/readerService'
+import Button from '@/components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -83,11 +86,9 @@ const UpdateReaderModal = ({ onSignal, id }) => {
 
     return (
         <div>
-            <button onClick={() => openModal(id)} className={cx('table-button')}>
-                Sửa
-            </button>
-
-
+            <Button isIcon onClick={() => openModal(id)} >
+                <FontAwesomeIcon icon={faPen} />
+            </Button>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

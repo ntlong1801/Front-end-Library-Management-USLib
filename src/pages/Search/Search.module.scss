@@ -27,42 +27,44 @@
 
 .body {
     margin-top: 12px;
-}
 
-table {
-    font-family: "Roboto", sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+    table {
+        font-family: "Roboto", sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-td,
-th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    border-radius: 4px;
-}
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        border-radius: 4px;
+    }
 
-thead tr:first-child {
+    thead tr:first-child {
+        td {
+            font-weight: 500;
+        }
+    }
+
     td {
-        font-weight: 500;
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:last-child {
+            text-align: center;
+        }
     }
-}
 
-td {
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:last-child {
-        text-align: center;
+    tr:nth-child(even) {
+        background-color: #E4F0F4;
     }
+
 }
 
-tr:nth-child(even) {
-    background-color: #E4F0F4;
-}
 
 .btn-info {
     padding: 4px 6px !important;
