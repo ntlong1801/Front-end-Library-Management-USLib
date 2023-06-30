@@ -13,14 +13,14 @@ import StudentPage from '@/pages/Student';
 import StudentHistoryPage from '@/pages/StudentHistory';
 
 export const publicRoutes = [
-	{ path: '/login', element: LoginPage, layout: FrontLayout },
-	{ path: '/register', element: RegisterPage, layout: FrontLayout },
-	{ path: '/search', element: SearchPage, layout: DefaultLayout },
-	{ path: '/book', element: BookPage, layout: DefaultLayout },
-	{ path: '/', element: HomePage, layout: DefaultLayout },
-	{ path: '/Record', element: Record, layout: DefaultLayout },
-	{ path: '/reader', element: ReaderManagementPage, layout: DefaultLayout },
-	{ path: '/regulation', element: RegulationPage, layout: DefaultLayout },
-	{ path: '/home', element: StudentPage, layout: DefaultLayout },
-	{ path: '/history', element: StudentHistoryPage, layout: DefaultLayout },
+    { path: '/login', element: LoginPage, layout: FrontLayout },
+    { path: '/register', element: RegisterPage, layout: FrontLayout },
+    { path: '/search', element: SearchPage, layout: DefaultLayout },
+    { path: '/book', element: BookPage, layout: DefaultLayout },
+    { path: '/', element: HomePage, layout: DefaultLayout },
+    { path: '/record', element: Record, layout: DefaultLayout },
+    { path: '/reader', element: ReaderManagementPage, layout: DefaultLayout },
+    { path: '/regulation', element: RegulationPage, layout: DefaultLayout },
+    { path: '/home', element: StudentPage, layout: DefaultLayout },
+    { path: '/history', element: StudentHistoryPage, layout: DefaultLayout },
 ];
