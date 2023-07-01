@@ -68,7 +68,6 @@ const ReaderManagement = () => {
         setSearchResults(results);
     };
 
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content-container')}>
@@ -78,12 +77,10 @@ const ReaderManagement = () => {
                     </div>
                     <div className={cx('search-box')}>
                         <input type="text" placeholder="Tìm kiếm độc giả theo tên" onChange={(e) => {
-                            <input type="text" placeholder="Tìm kiếm độc giả theo tên" onChange={(e) => {
-                                filterResults(e.target.value)
-                                setName(e.target.value)
-                            }} />
+                            filterResults(e.target.value)
                             setName(e.target.value)
                         }} />
+
                         <button type="submit" onClick={handleSearch}>
                             <img src={images.search} alt="searchBox" />
                         </button>

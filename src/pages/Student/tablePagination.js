@@ -44,7 +44,7 @@ const TableWithPagination = ({ data, itemsPerPage }) => {
         </thead>
         <tbody>
           {getDataForCurrentPage().map((item, index) => (
-            <tr key={item.id} style={{ backgroundColor: index % 2 === 0 ? '#f0f0f0' : '#e0e0e0' }}>
+            <tr key={item.id}>
               <td>{item.name}</td>
               <td>{item.genre}</td>
               <td>{item.author}</td>

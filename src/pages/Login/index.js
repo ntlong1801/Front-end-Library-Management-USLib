@@ -11,6 +11,7 @@ import useGlobalContext from '@/hooks/useGlobalContext';
 const cx = classNames.bind(styles);
 
 function Login () {
+	// eslint-disable-next-line no-unused-vars
 	const [state, setState] = useGlobalContext()
 	const [id, setId] = useState('');
 	const [password, setPassword] = useState('');
@@ -40,7 +41,8 @@ function Login () {
 					return {
 						id: id,
 						isLogin: true,
-						type: data.type
+						type: data.type,
+						info: data.info
 					}
 				})
 

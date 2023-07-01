@@ -39,8 +39,6 @@ const MENU = [
 ]
 Modal.setAppElement('#root')
 
-
-
 function Header () {
 	const navigate = useNavigate();
 	const [showNotifications, setShowNotifications] = useState(false)
@@ -66,7 +64,7 @@ function Header () {
 		navigate('/reader');
 	}
 
-	const [state, setState] = useGlobalContext()
+	const [state] = useGlobalContext()
 	const [time, setTime] = useState(new Date())
 	const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -141,14 +139,12 @@ function Header () {
 									</div>
 								})
 							}
-
-
 						</Popper>
 					</div>}
 				>
 					<div className={cx('user-info')}>
-						<h3 className={cx('name')}>Nguyen Xuan Quan</h3>
-						<p className={cx('role')}>Admin</p>
+						<h3 className={cx('name')}>{state.info.name}</h3>
+						<p className={cx('role')}>{state.type}</p>
 					</div>
 				</Tippy>
 			</div>

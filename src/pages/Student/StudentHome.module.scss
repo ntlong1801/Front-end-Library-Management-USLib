@@ -20,6 +20,32 @@
 .full-width-table {
     width: 100%;
     table-layout: fixed;
+    font-family: "Roboto", sans-serif;
+    border-collapse: collapse;
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    thead tr:first-child {
+        td {
+            font-weight: 500;
+        }
+    }
+
+    td {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    tr:nth-child(even) {
+        background-color: #E4F0F4;
+    }
 }
 
 .pagination {
