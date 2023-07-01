@@ -96,9 +96,8 @@ const ReaderManagement = () => {
                     </div>
                 </div>
                 <br />
-                <h2>Yêu cầu lập thẻ độc giả: </h2>
-                <br />
                 <div className={cx('table-container')}>
+                    <h2 >Yêu cầu lập thẻ độc giả: </h2>
                     <div>
                         <TableWithPagination data={requestList} searchResults={searchResults} name={name}
                             itemsPerPage={itemsPerPage} onSignal={handleSignalFromModal} type={false} />

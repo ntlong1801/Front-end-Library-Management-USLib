@@ -35,11 +35,12 @@ function Login () {
 				setMessage(data.msg);
 			} else {
 				var ciphertext = CryptoJS.AES.encrypt(data.refreshToken, process.env.REACT_APP_ENCRYPT_SECRET_KEY).toString();
+
 				setState(prev => {
 					return {
-						...prev,
 						id: id,
-						isLogin: true
+						isLogin: true,
+						type: data.type
 					}
 				})
 
@@ -64,11 +65,11 @@ function Login () {
 
 			<div className={cx('form-container')}>
 				<div className={cx('form-group')}>
-					<label className={cx('form-label')}>Mã số sinh viên</label>
+					<label className={cx('form-label')}>Mã số người dùng</label>
 					<input
 						className={cx('form-control')}
 						type='text'
-						placeholder='Nhập mã số sinh viên'
+						placeholder='Nhập mã số'
 						value={id}
 						onChange={(e) => {
 							setId(e.target.value);

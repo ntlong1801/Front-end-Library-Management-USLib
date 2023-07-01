@@ -7,7 +7,7 @@ function GlobalStyleProvider ({ children }) {
     const [state, setState] = useState({
         isLogin: false,
         id: '',
-        type: 'student'
+        type: 'admin'
     })
 
     return (<globalContext.Provider value={[state, setState]}>

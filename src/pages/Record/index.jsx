@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './record.css';
+import Button from '@/components/Button';
 
 function Record() {
 	const [activeTab, setActiveTab] = useState('borrow');
@@ -18,6 +19,7 @@ function Record() {
 		setActiveTab(tab);
 		setResponseMsg('');
 	};
+
 	const handleBorrowSubmit = async () => {
 		try {
 			const response = await fetch('http://localhost:5000/api/record', {
@@ -79,29 +81,32 @@ function Record() {
 	return (
 		<div className='record-page'>
 			<div className='tab-buttons'>
-				<button
-					className={activeTab === 'borrow' ? 'active' : ''}
+				<Button
+					className='tab-btn'
+					active={activeTab === 'borrow' ? 'active' : ''}
 					onClick={() => handleTabChange('borrow')}
 				>
-					Lập phiếu mượn{' '}
-				</button>{' '}
-				<button
-					className={activeTab === 'search' ? 'active' : ''}
+					Lập phiếu mượn
+				</Button>
+				<Button
+					className='tab-btn'
+					active={activeTab === 'search' ? 'active' : ''}
 					onClick={() => handleTabChange('search')}
 				>
-					Tra cứu phiếu mượn{' '}
-				</button>{' '}
-				<button
-					className={activeTab === 'return' ? 'active' : ''}
+					Tra cứu phiếu mượn
+				</Button>
+				<Button
+					className='tab-btn'
+					active={activeTab === 'return' ? 'active' : ''}
 					onClick={() => handleTabChange('return')}
 				>
-					Lập phiếu trả sách{' '}
-				</button>{' '}
-			</div>{' '}
+					Lập phiếu trả sách
+				</Button>
+			</div>
 			{activeTab === 'borrow' && (
 				<div className='tab-content'>
 					<div className='input-group'>
-						<label htmlFor='studentId'> Mã số sinh viên: </label>{' '}
+						<label htmlFor='studentId'> Mã số sinh viên: </label>
 						<input
 							type='text'
 							id='studentId'
@@ -109,9 +114,9 @@ function Record() {
 							onChange={(e) => setStudentIdBorrow(e.target.value)}
 							className='student-id'
 						/>
-					</div>{' '}
+					</div>
 					<div className='input-group'>
-						<label htmlFor='name'> Tên sinh viên: </label>{' '}
+						<label htmlFor='name'> Tên sinh viên: </label>
 						<input
 							type='text'
 							id='name'
@@ -119,9 +124,9 @@ function Record() {
 							onChange={(e) => setNameBorrow(e.target.value)}
 							className='name'
 						/>
-					</div>{' '}
+					</div>
 					<div className='input-group'>
-						<label htmlFor='date'> Ngày mượn: </label>{' '}
+						<label htmlFor='date'> Ngày mượn: </label>
 						<input
 							type='date'
 							id='date'
@@ -129,9 +134,9 @@ function Record() {
 							onChange={(e) => setDateBorrow(e.target.value)}
 							className='date'
 						/>
-					</div>{' '}
+					</div>
 					<div className='input-group'>
-						<label htmlFor='bookIds'> Danh sách mã sách: </label>{' '}
+						<label htmlFor='bookIds'> Danh sách mã sách: </label>
 						<input
 							type='text'
 							id='bookIds'
@@ -139,19 +144,19 @@ function Record() {
 							onChange={(e) => setBookIdsBorrow(e.target.value)}
 							className='book-ids'
 						/>
-					</div>{' '}
+					</div>
 					<button
 						className='submit-btn'
 						onClick={handleBorrowSubmit}
 					>
-						Lập phiếu mượn{' '}
-					</button>{' '}
+						Lập phiếu mượn
+					</button>
 				</div>
-			)}{' '}
+			)}
 			{activeTab === 'search' && (
 				<div className='tab-content'>
 					<div className='input-group'>
-						<label htmlFor='studentId'> Mã số sinh viên: </label>{' '}
+						<label htmlFor='studentId'> Mã số sinh viên: </label>
 						<input
 							type='text'
 							id='studentId'
@@ -159,19 +164,19 @@ function Record() {
 							onChange={(e) => setStudentIdSearch(e.target.value)}
 							className='student-id'
 						/>
-					</div>{' '}
+					</div>
 					<button
 						className='submit-btn'
 						onClick={handleSearchSubmit}
 					>
-						Tra cứu phiếu mượn{' '}
-					</button>{' '}
+						Tra cứu phiếu mượn
+					</button>
 				</div>
-			)}{' '}
+			)}
 			{activeTab === 'return' && (
 				<div className='tab-content'>
 					<div className='input-group'>
-						<label htmlFor='studentId'> Mã số sinh viên: </label>{' '}
+						<label htmlFor='studentId'> Mã số sinh viên: </label>
 						<input
 							type='text'
 							id='studentId'
@@ -179,9 +184,9 @@ function Record() {
 							onChange={(e) => setStudentIdReturn(e.target.value)}
 							className='student-id'
 						/>
-					</div>{' '}
+					</div>
 					<div className='input-group'>
-						<label htmlFor='date'> Ngày mượn: </label>{' '}
+						<label htmlFor='date'> Ngày mượn: </label>
 						<input
 							type='date'
 							id='date'
@@ -189,9 +194,9 @@ function Record() {
 							onChange={(e) => setDateReturn(e.target.value)}
 							className='date'
 						/>
-					</div>{' '}
+					</div>
 					<div className='input-group'>
-						<label htmlFor='bookIds'> Danh sách mã sách: </label>{' '}
+						<label htmlFor='bookIds'> Danh sách mã sách: </label>
 						<input
 							type='text'
 							id='bookIds'
@@ -199,16 +204,16 @@ function Record() {
 							onChange={(e) => setBookIdsReturn(e.target.value)}
 							className='book-ids'
 						/>
-					</div>{' '}
+					</div>
 					<button
 						className='submit-btn'
 						onClick={handleReturnSubmit}
 					>
-						Lập phiếu trả sách{' '}
-					</button>{' '}
+						Lập phiếu trả sách
+					</button>
 				</div>
-			)}{' '}
-			{responseMsg && <div className='response-msg'> {responseMsg} </div>}{' '}
+			)}
+			{responseMsg && <div className='response-msg'> {responseMsg} </div>}
 		</div>
 	);
 }

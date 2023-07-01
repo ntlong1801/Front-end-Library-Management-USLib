@@ -1,6 +1,7 @@
 .m-8 {
     margin: 8px;
 }
+
 .wrapper {
     display: flex;
     height: 56px;
@@ -104,5 +105,51 @@
     svg {
         color: var(--icon-color);
         font-size: 1.6rem;
+    }
+}
+
+
+.modal {
+
+    &-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        inset: 0px;
+    }
+
+    width: 280px;
+
+    &-heading {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    &-form {
+        width: 100%;
+    }
+
+    .form {
+
+        &-group+.form-group {
+            margin-top: 6px;
+        }
+
+        &-label {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        &-control {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 6px 8px;
+            width: 100%;
+        }
+    }
+
+    &-actions {
+        margin-top: 12px;
+        display: flex;
+        justify-content: flex-end;
     }
 }

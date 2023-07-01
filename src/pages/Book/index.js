@@ -213,17 +213,17 @@ function Book () {
 		const isDelete = confirm(`Bạn chắc chắn muốn xóa ${name}`);
 
 		if (isDelete) {
-			const data = await bookService.deleteBook(id);
+			const res = await bookService.deleteBook(id);
 			setBooks((prev) => {
 				return prev.filter((book) => {
 					return book.id !== id;
 				});
 			});
 
-			if (data.result) {
-				toast.success(data.ms, toastOption)
+			if (res.result) {
+				toast.success(res.msg, toastOption)
 			} else {
-				toast.error(data.ms, toastOption)
+				toast.error(res.msg, toastOption)
 			}
 		}
 	};
@@ -390,7 +390,7 @@ function Book () {
 								</tr>
 							);
 						}) : <tr>
-							<td colSpan="7" style={{ "textAlign": "center" }}>Đang tải danh sách...</td>
+							<td colSpan="7" style={{ "textAlign": "center" }}>Sách đang rỗng</td>
 						</tr>}
 					</tbody>
 				</table>

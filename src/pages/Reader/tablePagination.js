@@ -9,7 +9,7 @@ import Button from '@/components/Button';
 import Tippy from '@tippyjs/react/headless';
 import Popper from '@/components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faListDots, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faCircleXmark, faListDots, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -119,8 +119,11 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 							<td>{item.email}</td>
 							{type && <td>{item.dateCreated}</td>}
 							<td>{item.typeOfReader}</td>
-							{!type && (<td> <Button onClick={() => handleAccept(item)}>Chấp nhận</Button></td>)}
-							{!type && (<td> <Button onClick={() => handleDelRequest(item.student_id)}>Từ chối</Button></td>)}
+							{!type && (<td> <Button success onClick={() => handleAccept(item)}> <FontAwesomeIcon isIcon icon={faCheck} /> </Button>
+								<Button warning onClick={() => handleDelRequest(item.student_id)}>
+									<FontAwesomeIcon isIcon icon={faCircleXmark} />
+								</Button>
+							</td>)}
 
 							{type && (<td >
 								<Tippy
@@ -135,7 +138,7 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 											</Button>
 										</Popper>
 									</div>}>
-									<Button className={cx('action')}>
+									<Button isIcon>
 										<FontAwesomeIcon icon={faListDots} />
 									</Button>
 								</Tippy>

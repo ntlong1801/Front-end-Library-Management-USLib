@@ -6,7 +6,7 @@ import { forwardRef } from 'react';
 
 const cx = classNames.bind(styles);
 
-function Button ({ href, to, children, active, disabled, isIcon, onClick, className, ...props }, ref) {
+function Button ({ href, to, children, active, warning, success, disabled, isIcon, onClick, className, ...props }, ref) {
 	let Com;
 
 	const _props = {
@@ -17,6 +17,8 @@ function Button ({ href, to, children, active, disabled, isIcon, onClick, classN
 	const classes = cx('btn', {
 		"is-icon": isIcon,
 		active: active,
+		warning: warning,
+		success: success,
 		disabled: disabled,
 		[className]: className,
 	});

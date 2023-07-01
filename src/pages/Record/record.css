@@ -1,5 +1,4 @@
 .record-page {
-	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -13,21 +12,8 @@
 	margin-right: 500px;
 }
 
-.tab-buttons button {
-	padding: 10px 20px;
-	margin-right: 10px;
-	font-size: 16px;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.tab-buttons button.active,
-.tab-buttons button:hover,
-.tab-buttons button:focus {
-	background-color: #00ace8;
-	color: #fff;
+.tab-btn {
+	min-width: 158px;
 }
 
 .tab-content {

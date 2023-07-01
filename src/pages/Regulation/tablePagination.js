@@ -5,6 +5,8 @@ import classNames from 'classnames/bind';
 import { deleteRegulation } from '@/service/regulationService';
 import UpdateRegulationModal from './updateRegulationModal';
 import Button from '@/components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -53,23 +55,24 @@ const TableWithPagination = ({ data, itemsPerPage, onSignal }) => {
 			<table className={cx('full-width-table')}>
 				<thead>
 					<tr>
-						<th>Tên</th>
-						<th>Giá trị mặc định</th>
-						<th>Giá trị hiện tại</th>
-						<th className={cx('table-button')}></th>
-						<th className={cx('table-button')}></th>
+						<td>Tên</td>
+						<td>Giá trị mặc định</td>
+						<td>Giá trị hiện tại</td>
+						<td width="10%">Thao tác</td>
 					</tr>
 				</thead>
 				<tbody>
 					{getDataForCurrentPage().map((item, index) => (
-						<tr key={item.id} style={{ backgroundColor: index % 2 === 0 ? '#f0f0f0' : '#e0e0e0' }}>
+						<tr key={item.id}>
 							<td>{item.name}</td>
 							<td>{item.default_value}</td>
 							<td>{item.current_value}</td>
 							<td >
 								<UpdateRegulationModal onSignal={handleOnSignalFromUpdate} data={item} />
+								<Button isIcon onClick={() => handleDel(item.name, item.id)}>
+									<FontAwesomeIcon icon={faTrash} />
+								</Button>
 							</td>
-							<td > <Button onClick={() => handleDel(item.name, item.id)}>Xóa</Button></td>
 						</tr>
 					))}
 

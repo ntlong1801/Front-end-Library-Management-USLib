@@ -30,7 +30,7 @@ export const editBook = async (id, data, config) => {
 export const deleteBook = async (id, config) => {
 	try {
 		const result = await api.deleteHTTP(`/api/book/${id}`, config);
-		return result.data;
+		return result;
 	} catch (er) {
 		throw new Error('Can not operate delete book API');
 	}

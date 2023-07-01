@@ -9,21 +9,34 @@ import * as authenServices from '@/service/authenService';
 const cx = classNames.bind(styles);
 
 function Register () {
-	const [id, setId] = useState('');
-	const [error, setError] = useState('');
+	const [data, setData] = useState({
+		id: '',
+		type: 'student'
+	})
+
+	const [message, setMessage] = useState('');
+	const [isError, setIsError] = useState(false)
 
 	const handleRegister = async () => {
-		if (id.length === 8) {
-			setError('Vui lòng đợi...');
-			const data = await authenServices.register({
-				id,
+		if (data.id.length === 8) {
+			setIsError(false)
+			setMessage('Vui lòng đợi...');
+			const res = await authenServices.register({
+				...data
 			});
 
-			setError((prev) => {
-				if (data.result) {
-					return data.msg + 'Kiểm tra email sinh viên để lấy mật khẩu.';
+
+			setMessage((prev) => {
+				if (res.result) {
+					if (data.type === 'student') {
+						return res.msg + '. Kiểm tra email sinh viên để lấy mật khẩu';
+					} else {
+						return res.msg + '. Mật khẩu của là 123456';
+					}
+				} else {
+					setIsError(true)
 				}
-				return data.msg;
+				return res.msg;
 			});
 		}
 	};
@@ -43,22 +56,55 @@ function Register () {
 
 			<div className={cx('form-container')}>
 				<div className={cx('form-group')}>
-					<label className={cx('form-label')}>Mã số sinh viên</label>
+					<label className={cx('form-label')}>Mã số</label>
 					<input
 						className={cx('form-control')}
 						type='text'
-						placeholder='Nhập mã số sinh viên'
-						value={id}
+						placeholder='Nhập mã số'
+						value={data.id}
 						onChange={(e) => {
-							setId(e.target.value);
+							setData((prev) => {
+								return {
+									...prev,
+									id: e.target.value
+								}
+							})
 						}}
 						onFocus={() => {
-							setError('');
+							setMessage('');
 						}}
 					/>
 				</div>
+				<div className={cx('form-group')}>
+					<label className={cx('form-label')}>Loại người</label>
+					<div className={cx('form-radios')}>
+						<div>
+							Sinh viên: <input checked={data.type === 'student'} onChange={() => {
+								setData((prev) => {
+									return {
+										...prev,
+										type: 'student'
+									}
+								})
+							}} name="type" type="radio" className={cx('form-radio')} />
+						</div>
+						<div>
+							Thủ thư: <input checked={data.type === 'admin'}
+								onChange={() => {
+									setData((prev) => {
+										return {
+											...prev,
+											type: 'admin'
+										}
+									})
+								}}
+								name="type" type="radio" className={cx('form-radio')} />
+						</div>
+					</div>
+				</div>
 
-				<p className={cx('error')}>{error}</p>
+
+				<p className={cx('message', { error: isError })}>{message}</p>
 				<button
 					className={cx('btn')}
 					onClick={handleRegister}

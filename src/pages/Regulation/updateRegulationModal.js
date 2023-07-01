@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import Modal from 'react-modal';
 import styles from './Regulation.module.scss';
 import classNames from 'classnames/bind';
 import { updateOneRegulation } from '@/service/regulationService'
 import Button from '@/components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -55,11 +57,10 @@ const UpdateRegulationModal = ({ onSignal, data }) => {
     };
 
     return (
-        <div>
-            <Button onClick={() => openModal()} >
-                Sửa
+        <Fragment>
+            <Button isIcon onClick={() => openModal()} >
+                <FontAwesomeIcon icon={faPen} />
             </Button>
-
 
             <Modal
                 isOpen={modalIsOpen}
@@ -126,7 +127,7 @@ const UpdateRegulationModal = ({ onSignal, data }) => {
 
                 </div>
             </Modal >
-        </div >
+        </ Fragment>
     );
 };
 

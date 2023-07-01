@@ -52,6 +52,7 @@ a[href] {
 img {
     display: block;
     width: 100%;
+    object-fit: contain;
 }
 
 .mt-auto {

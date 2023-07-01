@@ -14,8 +14,8 @@
     margin-bottom: 24px;
 
     .logo {
-        width: 100px;
-        height: 100px;
+        width: 140px;
+        height: 140px;
         margin-bottom: 12px;
     }
 
@@ -32,6 +32,9 @@
 }
 
 .form {
+    &-group+.form-group {
+        margin-top: 12px;
+    }
 
     &-label {
         display: block;
@@ -50,14 +53,34 @@
         border: 1px solid #dce6ed;
     }
 
+    &-radios {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 1.5rem;
+
+        div {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &-radio {
+        cursor: pointer;
+        margin-left: 12px;
+    }
 
 }
 
-.error {
+.message {
     margin: 12px 0;
     text-align: center;
     font-size: 1.2rem;
-    color: var(--error-color);
+    color: var(--success-color);
+
+    &.error {
+        color: var(--error-color);
+    }
 }
 
 .utils {

@@ -27,6 +27,22 @@
 
     }
 
+    &.warning {
+        color: var(--error-color);
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    &.success {
+        color: var(--success-color);
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
     &.is-icon {
         padding: 4px 6px !important;
     }
