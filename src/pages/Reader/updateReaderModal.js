@@ -5,6 +5,8 @@ import classNames from 'classnames/bind';
 import styles from './Reader.module.scss';
 import Button from '@/components/Button';
 import { getOneReader, updateOneReader } from '@/service/readerService'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -67,7 +69,6 @@ const UpdateReaderModal = ({ onSignal, id }) => {
         delete newData.student_id;
 
         const result = await updateOneReader(id, newData);
-        console.log(result);
         if (result.result === false || result.error !== undefined) {
             setIsError(true)
             setMessage(result.msg || result.error)
@@ -84,8 +85,8 @@ const UpdateReaderModal = ({ onSignal, id }) => {
 
     return (
         <div>
-            <Button onClick={() => openModal(id)}>
-                Sửa
+            <Button isIcon onClick={() => openModal(id)}>
+                <FontAwesomeIcon icon={faPen} />
             </Button>
 
 

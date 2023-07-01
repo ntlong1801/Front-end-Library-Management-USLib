@@ -6,6 +6,10 @@ import classNames from 'classnames/bind';
 import { deleteReader, addReader, deleteRequest } from '@/service/readerService';
 import UpdateReaderModal from './updateReaderModal';
 import Button from '@/components/Button';
+import Tippy from '@tippyjs/react/headless';
+import Popper from '@/components/Popper';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faListDots, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -66,7 +70,6 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 			const formattedDate = formatDate(currentDate);
 			data.dateCreated = formattedDate;
 			const result = await addReader(data);
-			console.log(result);
 			if (result.result === true) {
 				deleteRequest(item.student_id)
 				onSignal("fetchDataRequest")
@@ -98,19 +101,18 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 			<table className={cx('full-width-table')}>
 				<thead>
 					<tr>
-						<th>Họ và tên</th>
-						<th>Ngày sinh</th>
-						<th>Địa chỉ</th>
-						<th>Email</th>
-						{type && <th>Ngày lập thẻ</th>}
-						<th>Loại độc giả</th>
-						<th className={cx('table-button')}></th>
-						<th className={cx('table-button')}></th>
+						<td width="20%">Họ và tên</td>
+						<td>Ngày sinh</td>
+						<td>Địa chỉ</td>
+						<td width="20%">Email</td>
+						{type && <td>Ngày lập thẻ</td>}
+						<td>Loại độc giả</td>
+						<td >Thao tác</td>
 					</tr>
 				</thead>
 				<tbody>
 					{getDataForCurrentPage().map((item, index) => (
-						<tr key={item.student_id} style={{ backgroundColor: index % 2 === 0 ? '#f0f0f0' : '#e0e0e0' }}>
+						<tr key={item.student_id} >
 							<td>{item.fullName}</td>
 							<td>{item.birthday}</td>
 							<td>{item.address}</td>
@@ -119,10 +121,25 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 							<td>{item.typeOfReader}</td>
 							{!type && (<td> <Button onClick={() => handleAccept(item)}>Chấp nhận</Button></td>)}
 							{!type && (<td> <Button onClick={() => handleDelRequest(item.student_id)}>Từ chối</Button></td>)}
-							{type && (<td className={cx('table-button')}>
-								<UpdateReaderModal onSignal={handleOnSignalFromUpdate} id={item.id} />
+
+							{type && (<td >
+								<Tippy
+									interactive
+									placement='top-start'
+									render={attrs => <div {...attrs} className='box'
+										tabIndex='-1'>
+										<Popper className={cx('sub-menu')}>
+											<UpdateReaderModal onSignal={handleOnSignalFromUpdate} id={item.id} />
+											<Button isIcon onClick={() => handleDel(item.fullName, item.id)}>
+												<FontAwesomeIcon icon={faTrash} />
+											</Button>
+										</Popper>
+									</div>}>
+									<Button className={cx('action')}>
+										<FontAwesomeIcon icon={faListDots} />
+									</Button>
+								</Tippy>
 							</td>)}
-							{type && (<td className={cx('table-button')}> <Button onClick={() => handleDel(item.fullName, item.id)}>Xóa</Button></td>)}
 						</tr>
 					))}
 

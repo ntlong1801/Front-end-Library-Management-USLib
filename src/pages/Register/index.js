@@ -8,7 +8,7 @@ import * as authenServices from '@/service/authenService';
 
 const cx = classNames.bind(styles);
 
-function Register() {
+function Register () {
 	const [id, setId] = useState('');
 	const [error, setError] = useState('');
 
@@ -69,7 +69,7 @@ function Register() {
 					Bạn đã có tài khoản? Hãy{' '}
 					<Link
 						className={cx('login')}
-						to='/login'
+						to='/'
 					>
 						Đăng nhập
 					</Link>

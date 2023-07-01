@@ -23,8 +23,10 @@ function Button ({ href, to, children, active, disabled, isIcon, onClick, classN
 
 	if (href) {
 		Com = 'a';
+		_props.href = href
 	} else if (to) {
 		Com = Link;
+		_props.to = to
 	} else {
 		Com = 'button';
 	}

@@ -50,7 +50,6 @@ const RequestCreateCard = () => {
         e.preventDefault();
         // // Xử lý logic khi submit form
         const result = await requestCreateCard(formData);
-        console.log(result);
 
         if (result.result === false) {
             setIsError(true);

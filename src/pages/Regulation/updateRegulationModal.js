@@ -40,7 +40,6 @@ const UpdateRegulationModal = ({ onSignal, data }) => {
         setMessage("Vui lòng đợi...")
 
         const result = await updateOneRegulation(data.id, formData);
-        console.log(result);
         if (result.result === false || result.error !== undefined) {
             setIsError(true)
             setMessage(result.msg || result.error)

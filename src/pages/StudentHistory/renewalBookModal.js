@@ -36,7 +36,6 @@ const ModalBox = (data) => {
     const handleRenewBook = async (e) => {
         e.preventDefault();
         // // Xử lý logic khi submit form
-        console.log(formData);
         const result = await renewalBorrowBook('20120555', formData);
         if (result.result === false) {
             setIsError(true);

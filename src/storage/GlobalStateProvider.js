@@ -6,7 +6,8 @@ export const globalContext = createContext()
 function GlobalStyleProvider ({ children }) {
     const [state, setState] = useState({
         isLogin: false,
-        id: ''
+        id: '',
+        type: 'student'
     })
 
     return (<globalContext.Provider value={[state, setState]}>

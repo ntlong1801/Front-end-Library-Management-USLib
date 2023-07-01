@@ -20,7 +20,6 @@ function Login () {
 
 	const navigator = useNavigate();
 
-	console.log(state)
 
 	const handleLogin = async () => {
 		if (id.length === 8) {
@@ -45,7 +44,7 @@ function Login () {
 				})
 
 				localStorage.setItem('refresh_token', ciphertext);
-				navigator('/');
+				navigator('/home');
 			}
 		}
 	};

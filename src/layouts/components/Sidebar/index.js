@@ -17,20 +17,20 @@ import CryptoJS from 'crypto-js';
 import styles from './Sidebar.module.scss';
 import images from '@/assets/images';
 import * as authenService from '@/service/authenService'
+import useGlobalContext from '@/hooks/useGlobalContext';
 
 const cx = classNames.bind(styles);
 
-const MENU = [
+const GENERAL_MENU = [
 	{
 		icon: faHome,
 		title: 'Trang chủ',
 		to: '/home',
 	},
-	{
-		icon: faMagnifyingGlass,
-		title: 'Tìm kiếm',
-		to: '/search',
-	},
+]
+
+const ADMIN_MENU = [
+	...GENERAL_MENU,
 	{
 		icon: faBook,
 		title: 'Quản lý sách',
@@ -47,16 +47,20 @@ const MENU = [
 		to: '/record',
 	},
 	{
-		icon: faHistory,
-		title: 'Lịch sử mượn',
-		to: '/history',
-	},
-	{
 		icon: faCircleCheck,
 		title: 'Quy định',
 		to: '/regulation',
 	},
 ];
+
+const STUDENT_MENU = [
+	...GENERAL_MENU,
+	{
+		icon: faHistory,
+		title: 'Lịch sử mượn',
+		to: '/history',
+	},
+]
 
 const AUX_MENU = [
 	{
@@ -71,8 +75,40 @@ const AUX_MENU = [
 	},
 ];
 
+
+
 function Sidebar () {
 	const navigator = useNavigate()
+	const [state] = useGlobalContext()
+
+	const renderMenu = () => {
+		let menuList
+		if (state.type === 'admin') {
+			menuList = ADMIN_MENU
+		} else if (state.type === 'student') {
+			menuList = STUDENT_MENU
+		}
+
+		return menuList.map((item, index) => {
+			return (
+				<li
+					className={cx('menu-item')}
+					key={index}
+				>
+					<Link
+						to={item.to}
+						className={cx('menu-link')}
+					>
+						<FontAwesomeIcon
+							className={cx('menu-icon')}
+							icon={item.icon}
+						/>
+						{item.title}
+					</Link>
+				</li>
+			);
+		})
+	}
 
 	const handleMenu = async (type) => {
 		switch (type) {
@@ -88,14 +124,14 @@ function Sidebar () {
 				if (res.result) {
 					localStorage.removeItem('refresh_token')
 					localStorage.removeItem('id')
-					navigator('/login')
+					navigator('/')
 				}
 
 				break;
 			default:
-
 		}
 	}
+
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('logo')}>
@@ -107,25 +143,7 @@ function Sidebar () {
 			<ul className={cx('menu-list')}>
 				<h2 className={cx('menu-heading')}>Main Menu</h2>
 
-				{MENU.map((item, index) => {
-					return (
-						<li
-							className={cx('menu-item')}
-							key={index}
-						>
-							<Link
-								to={item.to}
-								className={cx('menu-link')}
-							>
-								<FontAwesomeIcon
-									className={cx('menu-icon')}
-									icon={item.icon}
-								/>
-								{item.title}
-							</Link>
-						</li>
-					);
-				})}
+				{renderMenu()}
 			</ul>
 
 			<ul className={cx('menu-list', 'mt-auto')}>
