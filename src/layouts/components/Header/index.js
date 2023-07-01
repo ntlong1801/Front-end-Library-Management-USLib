@@ -41,12 +41,12 @@ Modal.setAppElement('#root')
 
 
 
-function Header() {
+function Header () {
 	const navigate = useNavigate();
 	const [showNotifications, setShowNotifications] = useState(false)
 	const [notifications, setNotifications] = useState([])
 
-	async function fetchData() {
+	async function fetchData () {
 		const data = await viewRequest();
 		if (data.result === true) {
 			setNotifications(data.request)
@@ -158,9 +158,10 @@ function Header() {
 				interactive
 				render={attrs => (
 					<div className={cx('box')} tabIndex="-1" {...attrs}>
-
-						<p className={cx('m-8')}>Có {notifications.length} yêu cầu lập thẻ độc giả</p>
-						<Button className={cx('center')} onClick={handleViewDetail}>Xem chi tiết</Button>
+						<Popper>
+							<p className={cx('m-8')}>Có {notifications.length} yêu cầu lập thẻ độc giả</p>
+							<Button className={cx('center')} onClick={handleViewDetail}>Xem chi tiết</Button>
+						</Popper>
 					</div>
 
 				)}
