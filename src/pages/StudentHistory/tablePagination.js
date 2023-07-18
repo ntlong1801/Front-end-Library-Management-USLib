@@ -43,7 +43,7 @@ const TableWithPagination = ({ data, itemsPerPage }) => {
         </thead>
         <tbody>
           {getDataForCurrentPage().map((item, index) => (
-            <tr key={item.id}>
+            <tr key={index}>
               <td>{item.book_id}</td>
               <td>{item.borrow_date}</td>
               <td>{item.return_date}</td>

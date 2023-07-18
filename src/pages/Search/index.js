@@ -14,7 +14,7 @@ import * as genreSearch from '@/service/genreService';
 const cx = classNames.bind(styles);
 const status = ['Có sẵn', 'Hết hàng'];
 
-function Search() {
+function Search () {
 	const [keyword, setKeyword] = useState({
 		name: '',
 	});
@@ -45,7 +45,7 @@ function Search() {
 	};
 
 	useEffect(() => {
-		async function fetchGenre() {
+		async function fetchGenre () {
 			const data = await genreSearch.getAll();
 
 			setGenres(data.genres);
@@ -102,8 +102,8 @@ function Search() {
 											}}
 										>
 											<option disabled>--Chọn--</option>
-											{genres.map((genre) => (
-												<option value={genre.abbreviation}>{genre.name}</option>
+											{genres.map((genre, index) => (
+												<option key={index} value={genre.name}>{genre.name}</option>
 											))}
 										</select>
 									</div>
@@ -120,8 +120,8 @@ function Search() {
 											}}
 										>
 											<option disabled>--Chọn--</option>
-											{status.map((status) => (
-												<option value={status}>{status}</option>
+											{status.map((item, index) => (
+												<option key={index} value={item}>{item}</option>
 											))}
 										</select>
 									</div>

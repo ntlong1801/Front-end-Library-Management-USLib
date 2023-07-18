@@ -6,6 +6,7 @@ import images from "@/assets/images";
 import TableWithPagination from './tablePagination';
 import AddReaderModal from "./addReaderModal";
 import { getAllReader, viewRequest } from "@/service/readerService";
+import { ToastContainer } from "react-toastify";
 
 const cx = classNames.bind(styles);
 
@@ -101,6 +102,8 @@ const ReaderManagement = () => {
                     </div>
                 </div>
             </div>
+
+            <ToastContainer />
         </div>
     );
 };

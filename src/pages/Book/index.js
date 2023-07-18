@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faListDots, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faListDots, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Toastify.css';
+import Modal from 'react-modal';
 
 import styles from './Book.module.scss';
 import * as bookService from '@/service/bookService';
@@ -16,12 +17,25 @@ import Tippy from '@tippyjs/react/headless';
 
 import Popper from '@/components/Popper';
 
+const customStyles = {
+	content: {
+		top: '50%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		marginRight: '-50%',
+		transform: 'translate(-50%, -50%)',
+	},
+};
+
 const cx = classNames.bind(styles);
 
 function Book () {
 	const [books, setBooks] = useState([]);
 	const [tab, setTab] = useState(1);
 	const [isEditing, setIsEditing] = useState(false);
+	const [modalIsOpen, setIsOpen] = useState(false);
+	const [nameOfDeletedBook, setNameOfDeletedBook] = useState('')
 
 	const [newBook, setNewBook] = useState({
 		id: '',
@@ -31,7 +45,7 @@ function Book () {
 		publishedYear: '',
 		publisher: '',
 		number: '',
-		status: '',
+		status: 'Có sẵn',
 	});
 
 	const [photos, setPhotos] = useState(undefined);
@@ -43,8 +57,9 @@ function Book () {
 		publishedYear: '',
 		publisher: '',
 		number: '',
-		status: '',
+		status: 'Có sẵn',
 	});
+
 	const [editedPhotos, setEditedPhotos] = useState(undefined);
 
 	const hanleChange = (e) => {
@@ -103,8 +118,6 @@ function Book () {
 					msg = 'Vui lòng nhập nhà xuất bản';
 				} else if (key === 'number') {
 					msg = 'Vui lòng nhập số lượng sách';
-				} else if (key === 'status') {
-					msg = 'Vui lòng chọn tình trạng sách';
 				}
 				return msg;
 			}
@@ -209,23 +222,20 @@ function Book () {
 	};
 
 	const handleDeleteBook = async (name, id) => {
-		// eslint-disable-next-line no-restricted-globals
-		const isDelete = confirm(`Bạn chắc chắn muốn xóa ${name}`);
-
-		if (isDelete) {
-			const res = await bookService.deleteBook(id);
-			setBooks((prev) => {
-				return prev.filter((book) => {
-					return book.id !== id;
-				});
+		//eslint-disable-next-line no-restricted-globals
+		const res = await bookService.deleteBook(id);
+		setBooks((prev) => {
+			return prev.filter((book) => {
+				return book.id !== id;
 			});
+		});
 
-			if (res.result) {
-				toast.success(res.msg, toastOption)
-			} else {
-				toast.error(res.msg, toastOption)
-			}
+		if (res.result) {
+			toast.success(res.msg, toastOption)
+		} else {
+			toast.error(res.msg, toastOption)
 		}
+		setIsOpen(false)
 	};
 
 	const handleReset = () => {
@@ -239,7 +249,7 @@ function Book () {
 					publishedYear: '',
 					publisher: '',
 					number: '',
-					status: '',
+					status: 'Có sẵn',
 				};
 			});
 
@@ -254,7 +264,7 @@ function Book () {
 					publishedYear: '',
 					publisher: '',
 					number: '',
-					status: '',
+					status: 'Có sẵn',
 				};
 			});
 
@@ -374,7 +384,15 @@ function Book () {
 													</Button>
 													<Button
 														className={cx('action')}
-														onClick={() => handleDeleteBook(book.name, book.id)}
+														onClick={() => {
+															setNameOfDeletedBook(() => {
+																return {
+																	name: book.name,
+																	id: book.id
+																}
+															});
+															setIsOpen(true);
+														}}
 													>
 														<FontAwesomeIcon icon={faTrash} />
 													</Button>
@@ -411,12 +429,6 @@ function Book () {
 								className={cx('form-file')}
 								type='file'
 							/>
-							<button className={cx('form-photos-btn', 'left')}>
-								<FontAwesomeIcon icon={faChevronLeft} />
-							</button>
-							<button className={cx('form-photos-btn', 'right')}>
-								<FontAwesomeIcon icon={faChevronRight} />
-							</button>
 						</div>
 						<div className={cx('form-info')}>
 							<h3 className={cx('form-heading')}>Nhập thông tin yêu cầu</h3>
@@ -478,13 +490,13 @@ function Book () {
 									value={isEditing ? editedBook.number : newBook.number}
 									onChange={hanleChange}
 								/>
-								<input
+								{/* <input
 									name='status'
 									className={cx('form-control')}
 									placeholder='Tình trạng'
 									value={isEditing ? editedBook.status : newBook.status}
 									onChange={hanleChange}
-								/>
+								/> */}
 							</div>
 							{!isEditing && (
 								<Button
@@ -513,6 +525,30 @@ function Book () {
 					</div>
 				</div>
 			</div>
+
+
+
+			<Modal
+				isOpen={modalIsOpen}
+				onRequestClose={() => setIsOpen(false)}
+				style={customStyles}
+				overlayClassName={cx('modal-overlay')}
+			>
+				<div className={cx('modal')}>
+
+					<h3 className={cx('modal-heading')}>Xác nhận xóa sách</h3>
+					<div className={cx('modal-form')}>
+						Bạn chắc chắn muốn xóa sách <h4>{nameOfDeletedBook.name}</h4>
+					</div>
+
+					<div className={cx('modal-actions')}>
+						<Button onClick={() => handleDeleteBook(nameOfDeletedBook.name, nameOfDeletedBook.id)}>Xóa</Button>
+						<Button onClick={() => setIsOpen(false)}>Hủy</Button>
+					</div>
+
+				</div>
+			</Modal>
+
 
 			<ToastContainer />
 		</div>

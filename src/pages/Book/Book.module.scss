@@ -70,33 +70,6 @@
             height: 300px;
             object-fit: contain;
         }
-
-        &-btn {
-            width: 34px;
-            height: 34px;
-            background-color: var(--icon-color);
-            cursor: pointer;
-            border-radius: 50%;
-            position: absolute;
-            bottom: -40px;
-
-            &:hover {
-                background-color: var(--primary-color);
-
-                svg {
-                    color: var(--white-color);
-                }
-            }
-
-        }
-
-        &-btn.left {
-            left: 30%;
-        }
-
-        &-btn.right {
-            right: 30%;
-        }
     }
 
     &-file {
@@ -141,4 +114,32 @@
 
 .sub-menu {
     min-width: 100px;
+}
+
+
+.modal {
+
+    &-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        inset: 0px;
+    }
+
+    width: 280px;
+
+    &-heading {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    &-form {
+        text-align: center;
+    }
+
+
+    &-actions {
+        margin-top: 24px;
+        display: flex;
+        justify-content: center;
+    }
 }
