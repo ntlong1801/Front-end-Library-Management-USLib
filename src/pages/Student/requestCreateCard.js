@@ -150,7 +150,7 @@ const RequestCreateCard = () => {
                             </div>
                             <p className={cx('message', { error: isError })}>{message}</p>
                             <div className={cx('center')}>
-                                <button type="submit" className={cx('reserve-button')}>Đặt trước</button>
+                                <button type="submit" className={cx('reserve-button')}>Yêu cầu lập thẻ</button>
                             </div>
                         </form>
                     </div>

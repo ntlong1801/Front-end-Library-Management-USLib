@@ -29,7 +29,7 @@ const TableWithPagination = ({ data, itemsPerPage }) => {
   };
 
   return (
-    <div className={cx('m-16')}>
+    <div className='mt-16'>
       <table className={cx('full-width-table')}>
         <thead>
           <tr>

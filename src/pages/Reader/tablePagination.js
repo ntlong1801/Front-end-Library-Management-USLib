@@ -85,8 +85,8 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 	const handleDelRequest = async (student_id) => {
 		await deleteRequest(student_id);
 		onSignal("fetchDataRequest")
+		toast.success(`Từ chối thành công`, toastOption)
 	}
-
 
 	const handleOnSignalFromUpdate = () => {
 		onSignal("fetchData")
@@ -95,12 +95,11 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 	const renderMessage = () => {
 		let msg = ''
 		if (action.type === 'DEL_READER') {
-			msg = `Độc giả ${action.data?.name} không?`
+			msg = `xóa độc giả ${action.data?.name} không?`
 		} else if (action.type === 'DEL_REQUEST_READER') {
 			msg = `từ chối lập thẻ độc giả có mã ${action.data?.student_id} không?`
-
 		} else if (action.type === 'ACCEPT_REQUEST') {
-			msg = `chấp nhận thẻ độc giả tên ${action.data?.fullName} không?`
+			msg = `chấp nhận thẻ độc giả tên ${action.data?.item.fullName} không?`
 		}
 
 		return msg
@@ -130,7 +129,7 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 							{type && <td>{item.dateCreated}</td>}
 							<td>{item.typeOfReader}</td>
 							{!type && (<td> <Button success onClick={() => {
-								handleAccept(item)
+								setIsOpen(true)
 								setAction({
 									type: 'ACCEPT_REQUEST',
 									data: {
@@ -199,9 +198,9 @@ const TableWithPagination = ({ data, searchResults, name, itemsPerPage, onSignal
 			>
 				<div className={cx('modal')}>
 
-					<h3 className={cx('modal-heading')}>Xác nhận xóa sách</h3>
+					<h3 className={cx('modal-heading')}>Xác nhận!</h3>
 					<div className={cx('modal-form')}>
-						Bạn chắc chắn muốn xóa
+						Bạn chắc chắn muốn
 						<h4>{renderMessage()}</h4>
 					</div>
 
